@@ -1,0 +1,17 @@
+{
+  "name": "Microservices_CatalogAPI",
+  "version": "0.0.1",
+  "description": "A microservices sample catalog API.",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "1.12.x",
+    "cfenv": "1.0.x",
+    "cloudant": "1.0.x",
+    "consolidate": "0.11.x",
+    "cors": "2.5.x",
+    "express": "3.20.x"
+  },
+  "repository": {}
+}
