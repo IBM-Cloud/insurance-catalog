@@ -1,6 +1,8 @@
 ---
 applications:
-- name: MicroservicesCatalogAPI
+- services
+  - myMicroservicesCloudant
+  name: MicroservicesCatalogAPI
   memory: 128m
   instances: 1
   host: ms-catalogAPI-${random-word}
