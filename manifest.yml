@@ -3,7 +3,7 @@ applications:
 - services
   - myMicroservicesCloudant
   name: MicroservicesCatalogAPI
-  memory: 128m
+  memory: 256m
   instances: 1
   host: ms-catalogAPI-${random-word}
   domain: mybluemix.net
