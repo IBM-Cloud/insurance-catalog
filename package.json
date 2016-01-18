@@ -13,5 +13,12 @@
     "cors": "2.5.x",
     "express": "3.20.x"
   },
-  "repository": {}
+  "repository": {},
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "grunt": "^0.4.5",
+    "grunt-env": "^0.4.4",
+    "grunt-mocha-test": "^0.12.7",
+    "request": "^2.67.0"
+  }
 }
