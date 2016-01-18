@@ -85,7 +85,7 @@ exports.remove =  function(req, res){
     var id = req.params.id;
     db.get(id, { revs_info: true }, function(err, body) {
         if (!err){
-            console.log('Deleting item: ' + id);
+            //console.log('Deleting item: ' + id);
             db.destroy(id, body._rev, function(err, body){
                 if(!err){
                     res.send({msg:'Successfully deleted item'});
