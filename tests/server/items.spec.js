@@ -28,6 +28,8 @@
     cdb.__set__('cloudant', mockcloudant);
     cdb.__set__('db', mockdb);
     var items = rewire('../../tests/server/coverage/instrumented/routes/items.js');
+    items.__set__('cloudant', mockcloudant);
+    items.__set__('db', mockdb);
 
     // create mock request and response
     var reqMock = {

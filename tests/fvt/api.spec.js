@@ -41,7 +41,7 @@
                     done();
                 } else {
                     if(data.length === 0) {
-                        done();
+                        return done();
                     }
                     for(var i = 0; i < data.length; i++) {
                         utils.makeRestCall({method: 'GET'}, '/items/' + data[i]._id, null, function(err, resp, body) {
@@ -61,7 +61,7 @@
                     done();
                 } else {
                     if(data.length === 0) {
-                        done();
+                        return done();
                     }
                     for(var i = 0; i < data.length; i++) {
                         //console.log("data - ", data);
@@ -84,7 +84,7 @@
                     done();
                 } else {
                     if(data.length === 0) {
-                        done();
+                        return done();
                     }
                     for(var i = 0; i < data.length; i++) {
                         utils.makeRestCall({method: 'DELETE'}, '/items/' + data[i]._id, null, function(err, resp, body) {

@@ -56,7 +56,7 @@ module.exports = function(grunt) {
                 force: true,
                 expand: true
             },
-            coverage: ['tests/server/coverage']
+            coverage: ['tests/server/coverage', 'tests/server/mochatest.json', 'tests/fvt/mochafvttest.json']
         },
         
         copy: {
@@ -104,5 +104,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('dev-test', ['env:test', 'clean:coverage', 'copy:resourcesForInstrumented', 'instrument', 'mochaTest:server-side-spec']);
     grunt.registerTask('dev-test-cov', ['env:test', 'clean:coverage', 'copy:resourcesForInstrumented', 'instrument', 'mochaTest:server-side', 'storeCoverage', 'makeReport']);
-    grunt.registerTask('dev-fvt', ['env:test', 'mochaTest:fvt-spec']);
+    grunt.registerTask('dev-fvtspec', ['env:test', 'clean:coverage', 'mochaTest:fvt-spec']);
+    grunt.registerTask('dev-fvt', ['env:test', 'clean:coverage', 'mochaTest:fvt']);
 };
