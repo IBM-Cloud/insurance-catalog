@@ -6,10 +6,10 @@ initDB = function() {
     cloudant.db.create('items', function(err, body){
     if(!err){
         populateDB();
-        console.log('Successfully created database and populated!');
+        //console.log('Successfully created database and populated!');
     }
     else{
-        console.log("Database already exists.");
+        //console.log("Database already exists.");
     }
     });
 }
@@ -86,7 +86,7 @@ populateDB = function() {
     for(p in products){
         db.insert(products[p], function(err, body, header){
             if(err){
-                console.log('error in populating the DB items: ' + err );
+                //console.log('error in populating the DB items: ' + err );
             }
         });
     }   
