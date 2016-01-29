@@ -1,6 +1,10 @@
 require('./db');
 initDB();
 
+var USE_FASTCACHE = true;
+
+var request = require('request')
+
 //Create and populate or delete the database.
 exports.dbOptions = function(req, res) {
     var option = req.params.option.toLowerCase();
@@ -37,7 +41,7 @@ exports.create = function(req, res) {
             }
         });
     }
-    
+
 //Uncomment this function to generate code coverage regression
 /*exports.reset = function(req, res) {
     var authtoken = req.headers.authorization;
@@ -52,6 +56,11 @@ exports.create = function(req, res) {
 //find an item by ID.
 exports.find = function(req, res) {
     var id = req.params.id;
+    if (USE_FASTCACHE && parseInt(id.substring(id.length - 2), 16) % 3 === 2) {
+        res.status(500).send({msg: 'server error'});
+        return;
+    }
+
     db.get(id, { revs_info: false }, function(err, body) {
         if (!err){
             res.send(body);
@@ -125,3 +134,44 @@ var fib = function(n) {
         return (fib(n - 2) + fib(n - 1));
     }
 }
+
+exports.loadTest = function(req, res) {
+    var testCount = req.query.count;
+    testCount = testCount ? parseInt(testCount) : 100;
+
+    var options = {
+        method: "GET",
+        uri: req.protocol + "://" + req.get('host') + "/items",
+        json: true
+    };
+    request.get(options, function(error, r, body) {
+        if (error || r.statusCode !== 200) {
+            res.status(500).json({"error": "Failed to retrieve items from catalog", "url": options.uri, "error": error});
+            return;
+        }
+
+        var successCount = 0, failCount = 0;
+        var startTime = Date.now();
+
+        for (var i = 0; i < testCount; i++) {
+            var current = body.rows[i % body.total_rows];
+            options = {
+                method: "GET",
+                uri: req.protocol + "://" + req.get('host') + "/items/" + current.id,
+                json: true
+            };
+            request.get(options, function(error, r, body) {
+                if (r.statusCode === 200) {
+                    successCount++;
+                } else {
+                    failCount++;
+                }
+                if (successCount + failCount === testCount) {
+                    var endTime = Date.now();
+                    res.json({"success": successCount, "fail": failCount, "time": endTime - startTime});
+                }
+            });
+        }
+    });
+}
+
