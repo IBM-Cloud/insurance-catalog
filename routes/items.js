@@ -42,17 +42,6 @@ exports.create = function(req, res) {
         });
     }
 
-//Uncomment this function to generate code coverage regression
-/*exports.reset = function(req, res) {
-    var authtoken = req.headers.authorization;
-    if (authtoken.startWith('Bearer') === true) {
-        var itemCount = 10;
-        var userCount = 2;
-        var ordersCount = 3;
-    }
-}
-*/
-
 //find an item by ID.
 exports.find = function(req, res) {
     var id = req.params.id;
@@ -135,6 +124,7 @@ var fib = function(n) {
     }
 }
 
+/*
 exports.loadTest = function(req, res) {
     var testCount = req.query.count;
     testCount = testCount ? parseInt(testCount) : 100;
@@ -174,4 +164,4 @@ exports.loadTest = function(req, res) {
         }
     });
 }
-
+*/
