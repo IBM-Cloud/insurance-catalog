@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cfenv = require("cfenv");
 var path = require('path');
-var cors = require('cors');l
+var cors = require('cors');
 
 //Setup Cloudant Service.
 var appEnv = cfenv.getAppEnv();
