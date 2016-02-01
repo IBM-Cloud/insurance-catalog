@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'www')));
 app.get('/db/:option', items.dbOptions);
 app.get('/items', items.list);
 app.get('/fib', items.fib);
-//app.get('/loadTest', items.loadTest);
+app.get('/loadTest', items.loadTest);
 app.get('/items/:id', items.find);
 app.post('/items', items.create);
 app.put('/items/:id', items.update);
