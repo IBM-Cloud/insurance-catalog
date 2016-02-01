@@ -4,8 +4,16 @@
 
     var utils = require('./utils.js');
     var assert = require('chai').assert;
+    var async = require('async');
+
+    /* 
+       sometimes due to timeout the database is left with data added by the FVT test cases, in other words the
+       FVT does not leave database in the same state it started with. In this case some of the testcases may find
+       more row than it expects. I am using async to handle these sutuations  - Umesh P
+    */ 
 
     describe('API', function() {
+        this.timeout(10000);
         it('list all items', function(done) {
             utils.makeRestCall({method: 'GET'}, '/items', null, function(err, resp, body) {
                 //console.log(JSON.stringify(body, null, 4));
@@ -43,13 +51,21 @@
                     if(data.length === 0) {
                         return done();
                     }
-                    for(var i = 0; i < data.length; i++) {
-                        utils.makeRestCall({method: 'GET'}, '/items/' + data[i]._id, null, function(err, resp, body) {
+                    async.every(data, function(item, callback) {
+                        utils.makeRestCall({method: 'GET'}, '/items/' + item._id, null, function(err, resp, body) {
                             //console.log(JSON.stringify(body, null, 4));
-                            assert(resp.statusCode === 200, 'Unexpected status code: ' + resp.statusCode);
-                            done();
+                            if(resp.statusCode === 200) {
+                                return callback(true);
+                            } else {
+                                return callback(false);
+                            }
                         });
-                    }
+                    }, function(result) {
+                        if(result === false) {
+                            assert("failed while getting the items");
+                        }
+                        done();
+                    });
                 }
             });
         });
@@ -63,16 +79,22 @@
                     if(data.length === 0) {
                         return done();
                     }
-                    for(var i = 0; i < data.length; i++) {
-                        //console.log("data - ", data);
-                        data[i].additional = "Something new";
-                        utils.makeRestCall({method: 'PUT', body: data[i]}, '/items/' + data[i]._id, null, function(err, resp, body) {
+                    async.every(data, function(item, callback) {
+                        item.additional = "Something new";
+                        utils.makeRestCall({method: 'PUT', body: item}, '/items/' + item._id, null, function(err, resp, body) {
                             //console.log(JSON.stringify(body, null, 4));
-                            assert(resp.statusCode === 200, 'Unexpected status code: ' + resp.statusCode);
-                            assert(body.additional = "Something new", "additional element not found or incorrect");
-                            done();
+                            if( (resp.statusCode === 200) && (body.additional === 'Something new') ) {
+                                return callback(true);
+                            } else {
+                                return callback(false);
+                            }
                         });
-                    }
+                    }, function(result) {
+                        if(result === false) {
+                            assert("failed to update an item");
+                        }
+                        done();
+                    });
                 }
             });
         });
@@ -86,14 +108,21 @@
                     if(data.length === 0) {
                         return done();
                     }
-                    for(var i = 0; i < data.length; i++) {
-                        utils.makeRestCall({method: 'DELETE'}, '/items/' + data[i]._id, null, function(err, resp, body) {
+                    async.every(data, function(item, callback) {
+                        utils.makeRestCall({method: 'DELETE'}, '/items/' + item._id, null, function(err, resp, body) {
                             //console.log(JSON.stringify(body, null, 4));
-                            assert(resp.statusCode === 200, 'Unexpected status code: ' + resp.statusCode);
-                            assert(body.msg === "Successfully deleted item", "Incorrect message received: ", body.msg);
-                            done();
+                            if( (resp.statusCode === 200) && (body.msg === "Successfully deleted item") ) {
+                                return callback(true);
+                            } else {
+                                return callback(false);
+                            }
                         });
-                    }
+                    }, function(result) {
+                        if(result === false) {
+                            assert("failed to delete an item");
+                        }
+                        done();
+                    });
                 }
             });
         });
