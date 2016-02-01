@@ -124,8 +124,9 @@ var fib = function(n) {
     }
 }
 
-/*
 exports.loadTest = function(req, res) {
+    // *************** (1 of 2) comment the next line to get the full loadTest function ***********
+    res.send({msg:'Error not implemented: 501'}); /*
     var testCount = req.query.count;
     testCount = testCount ? parseInt(testCount) : 100;
 
@@ -163,5 +164,6 @@ exports.loadTest = function(req, res) {
             });
         }
     });
-}
+// *************** (2 of 2) comment the next line to get the full loadTest function ***********
 */
+}
