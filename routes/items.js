@@ -3,7 +3,7 @@ initDB();
 
 var USE_FASTCACHE = false;
 
-var request = require('request')
+var http = require('http');
 
 //Create and populate or delete the database.
 exports.dbOptions = function(req, res) {
@@ -45,8 +45,13 @@ exports.create = function(req, res) {
 //find an item by ID.
 exports.find = function(req, res) {
     var id = req.params.id;
-    if (USE_FASTCACHE && parseInt(id.substring(id.length - 2), 16) % 3 === 2) {
-        res.status(500).send({msg: 'server error'});
+    if (USE_FASTCACHE) {
+    	var idAsNumber = parseInt(id.substring(id.length - 2), 16);
+    	if (!idAsNumber || idAsNumber % 3 === 2) {
+        	res.status(500).send({msg: 'server error'});
+    	} else {
+    		res.status(200).send({msg: 'all good'});
+    	}
         return;
     }
 
@@ -130,40 +135,31 @@ exports.loadTest = function(req, res) {
     var testCount = req.query.count;
     testCount = testCount ? parseInt(testCount) : 100;
 
-    var options = {
-        method: "GET",
-        uri: req.protocol + "://" + req.get('host') + "/items",
-        json: true
+    var successCount = 0, failCount = 0;
+    var startTime = Date.now();
+
+    var callback = function(response) {
+        if (response.statusCode === 200) {
+            successCount++;
+        } else {
+            failCount++;
+        }
+
+        if (successCount + failCount === testCount) {
+            var endTime = Date.now();
+            res.json({"success": successCount, "fail": failCount, "time": endTime - startTime});
+        }
     };
-    request.get(options, function(error, r, body) {
-        if (error || r.statusCode !== 200) {
-            res.status(500).json({"error": "Failed to retrieve items from catalog", "url": options.uri, "error": error});
-            return;
-        }
 
-        var successCount = 0, failCount = 0;
-        var startTime = Date.now();
+	var itemId1 = "1f9e7891bffb03605e3a9b43f996f6ea";
+	var itemId2 = "9dce21273d13dc1dcb1b47370359e753";
+    for (var i = 0; i < testCount; i++) {
+		http.get({
+	        host: req.get('host'),
+	        path: "/items/" + (i % 2 ? itemId1 : itemId2)
+	    }, callback);
+    }
 
-        for (var i = 0; i < testCount; i++) {
-            var current = body.rows[i % body.total_rows];
-            options = {
-                method: "GET",
-                uri: req.protocol + "://" + req.get('host') + "/items/" + current.id,
-                json: true
-            };
-            request.get(options, function(error, r, body) {
-                if (r.statusCode === 200) {
-                    successCount++;
-                } else {
-                    failCount++;
-                }
-                if (successCount + failCount === testCount) {
-                    var endTime = Date.now();
-                    res.json({"success": successCount, "fail": failCount, "time": endTime - startTime});
-                }
-            });
-        }
-    });
 // *************** (2 of 3) comment the next line to get the full loadTest function ***********
 */
 // *************** (3 of 3) change USE_FASTCACHE up at the top to 'true' to enable enhanced lookup ***********
