@@ -1,9 +1,42 @@
+var http = require('http');
 require('./db');
 initDB();
 
-var USE_FASTCACHE = false;
+//var USE_FASTCACHE = true;
 
-var http = require('http');
+exports.loadTest = function(req, res) {
+    res.json({"success": 0, "fail": 0, "time": 0}); // important: stub, remove this line if enabling loadTest
+/*
+    var testCount = req.query.count;
+    testCount = testCount ? parseInt(testCount) : 100;
+
+    var successCount = 0, failCount = 0;
+    var startTime = Date.now();
+
+    var callback = function(response) {
+        if (response.statusCode === 200) {
+            successCount++;
+        } else {
+            failCount++;
+        }
+
+        if (successCount + failCount === testCount) {
+            var endTime = Date.now();
+            res.json({"success": successCount, "fail": failCount, "time": endTime - startTime});
+        }
+    };
+
+	var itemId1 = "1f9e7891bffb03605e3a9b43f996f6ea";
+	var itemId2 = "9dce21273d13dc1dcb1b47370359e753";
+    for (var i = 0; i < testCount; i++) {
+		http.get({
+	        host: req.get('host'),
+	        path: "/items/" + (i % 2 ? itemId1 : itemId2)
+	    }, callback);
+    }
+*/
+};
+
 
 //Create and populate or delete the database.
 exports.dbOptions = function(req, res) {
@@ -128,39 +161,3 @@ var fib = function(n) {
         return (fib(n - 2) + fib(n - 1));
     }
 }
-
-exports.loadTest = function(req, res) {
-    // *************** (1 of 3) comment the next line to get the full loadTest function ***********
-    res.json({"success": 0, "fail": 0, "time": 0}); /*
-    var testCount = req.query.count;
-    testCount = testCount ? parseInt(testCount) : 100;
-
-    var successCount = 0, failCount = 0;
-    var startTime = Date.now();
-
-    var callback = function(response) {
-        if (response.statusCode === 200) {
-            successCount++;
-        } else {
-            failCount++;
-        }
-
-        if (successCount + failCount === testCount) {
-            var endTime = Date.now();
-            res.json({"success": successCount, "fail": failCount, "time": endTime - startTime});
-        }
-    };
-
-	var itemId1 = "1f9e7891bffb03605e3a9b43f996f6ea";
-	var itemId2 = "9dce21273d13dc1dcb1b47370359e753";
-    for (var i = 0; i < testCount; i++) {
-		http.get({
-	        host: req.get('host'),
-	        path: "/items/" + (i % 2 ? itemId1 : itemId2)
-	    }, callback);
-    }
-
-// *************** (2 of 3) comment the next line to get the full loadTest function ***********
-*/
-// *************** (3 of 3) change USE_FASTCACHE up at the top to 'true' to enable enhanced lookup ***********
-};
