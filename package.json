@@ -11,8 +11,7 @@
     "cloudant": "*",
     "consolidate": "0.11.x",
     "cors": "2.5.x",
-    "express": "3.20.x",
-    "request": "*"
+    "express": "3.20.x"
   },
   "repository": {},
   "devDependencies": {
