@@ -3,7 +3,7 @@ applications:
 - services:
   - myMicroservicesCloudant
   name: MicroservicesCatalogAPI
-  memory: 96m
+  memory: 128m
   instances: 1
   path: .
 declared-services:
