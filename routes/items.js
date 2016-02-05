@@ -92,16 +92,16 @@ exports.find = function(req, res) {
     		res.status(200).send({msg: 'all good'});
     	}
         return;
+    } else {
+        db.get(id, { revs_info: false }, function(err, body) {
+            if (!err){
+                res.send(body);
+            }
+            else{
+                res.send({msg:'Error: could not find item: ' + id});
+            }
+        });
     }
-
-    db.get(id, { revs_info: false }, function(err, body) {
-        if (!err){
-            res.send(body);
-        }
-        else{
-            res.send({msg:'Error: could not find item: ' + id});
-        }
-    });
 }
 
 //list all the database contents.
@@ -166,4 +166,8 @@ var fib = function(n) {
     else {
         return (fib(n - 2) + fib(n - 1));
     }
+}
+
+exports.getFastCache = function() {
+    return USE_FASTCACHE;
 }
