@@ -2,7 +2,7 @@ var http = require('http');
 require('./db');
 initDB();
 
-//var USE_FASTCACHE = true;
+var USE_FASTCACHE = false;
 
 exports.loadTest = function(req, res) {
     res.json({"success": 0, "fail": 0, "time": 0}); // important: stub, remove this line if enabling loadTest
