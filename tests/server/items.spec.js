@@ -31,6 +31,8 @@
     items.__set__('cloudant', mockcloudant);
     items.__set__('db', mockdb);
 
+    var USE_FASTCACHE = items.getFastCache();
+
     // create mock request and response
     var reqMock = {
         params: {
@@ -39,7 +41,7 @@
     };
 
     var resMock = {};
-    resMock.status = function() {};
+    resMock.status = function() { return this;};
     resMock.send = function() {};
     resMock.end = function() {};
     sinon.spy(resMock, "send");
@@ -114,7 +116,11 @@
             };
             
             items.find( reqMock, resMock );
-            assert( resMock.send.lastCall.calledWith( 'test body' ), 'Unexpected argument: ' + JSON.stringify(resMock.send.lastCall.args) );
+            if(USE_FASTCACHE) {
+                assert( resMock.send.lastCall.calledWith( {msg:"server error"} ), 'Unexpected argument: ' + JSON.stringify(resMock.send.lastCall.args) );
+            } else {
+                assert( resMock.send.lastCall.calledWith( 'test body' ), 'Unexpected argument: ' + JSON.stringify(resMock.send.lastCall.args) );
+            }
         });
         
         it('Item not found - db error', function() {
@@ -124,7 +130,11 @@
             };
             
             items.find( reqMock, resMock );
-            assert( resMock.send.lastCall.calledWith( { msg: 'Error: could not find item: testId' } ), 'Unexpected argument: ' + JSON.stringify(resMock.send.lastCall.args) );
+            if(USE_FASTCACHE) {
+                assert( resMock.send.lastCall.calledWith( {msg:"server error"} ), 'Unexpected argument: ' + JSON.stringify(resMock.send.lastCall.args) );
+            } else {
+                assert( resMock.send.lastCall.calledWith( { msg: 'Error: could not find item: testId' } ), 'Unexpected argument: ' + JSON.stringify(resMock.send.lastCall.args) );
+            }
         });
     });
     
