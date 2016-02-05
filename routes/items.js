@@ -2,10 +2,16 @@ var http = require('http');
 require('./db');
 initDB();
 
+/*
+ * To enable the 'improved' cache mechanism set USE_FASTCACHE to true.
+ *
+ * To enable the load generator uncomment the block in loadTest below.
+ * IMPORTANT: Be sure to remove the current stub line that returns 0's.
+ */
 var USE_FASTCACHE = false;
 
 exports.loadTest = function(req, res) {
-    res.json({"success": 0, "fail": 0, "time": 0}); // important: stub, remove this line if enabling loadTest
+    res.json({"success": 0, "fail": 0, "time": 0});
 /*
     var testCount = req.query.count;
     testCount = testCount ? parseInt(testCount) : 100;
@@ -26,13 +32,13 @@ exports.loadTest = function(req, res) {
         }
     };
 
-	var itemId1 = "1f9e7891bffb03605e3a9b43f996f6ea";
-	var itemId2 = "9dce21273d13dc1dcb1b47370359e753";
+    var itemId1 = "1f9e7891bffb03605e3a9b43f996f6ea";
+    var itemId2 = "9dce21273d13dc1dcb1b47370359e753";
     for (var i = 0; i < testCount; i++) {
-		http.get({
-	        host: req.get('host'),
-	        path: "/items/" + (i % 2 ? itemId1 : itemId2)
-	    }, callback);
+        http.get({
+            host: req.get('host'),
+            path: "/items/" + (i % 2 ? itemId1 : itemId2)
+	}, callback);
     }
 */
 };
