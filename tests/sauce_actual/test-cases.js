@@ -27,10 +27,10 @@ wd.configureHttp( {
 });
 
 var desired = JSON.parse(process.env.DESIRED || '{browserName: "chrome"}');
-desired.name = 'OrdersAPI with ' + desired.browserName;
-desired.tags = ['OrdersAPI'];
+desired.name = 'CatalogAPI with ' + desired.browserName;
+desired.tags = ['CatalogAPI'];
 
-describe('OrdersAPI(' + desired.browserName + ')', function() {
+describe('CatalogAPI(' + desired.browserName + ')', function() {
     var browser;
     var allPassed = true;
 
@@ -68,7 +68,7 @@ describe('OrdersAPI(' + desired.browserName + ')', function() {
         browser
             .get(url)
             .title()
-            .should.become("Orders RESTful API")
+            .should.become("Catalog RESTful API")
             .nodeify(done);
     });
 });

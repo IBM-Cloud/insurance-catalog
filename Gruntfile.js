@@ -100,14 +100,14 @@ var gruntConfig = {
                     timeout: 60000,
                     reporter: 'spec-xunit-file',
                 },
-                src: ['tests_actual/test-cases.js']
+                src: ['tests/sauce_actual/test-cases.js']
             },
             sauce_node: {
                 options: {
                     timeout: 60000,
                     reporter: 'spec-xunit-file',
                 },
-                src: ['test/test-cases.js']
+                src: ['tests/sauce/test-cases.js']
             }
         },    
         jshint: {
