@@ -2,8 +2,6 @@ var _ = require('lodash');
 var desireds = require('./desireds');
 
 var gruntConfig = {
-        pkg: grunt.file.readJSON('package.json'),
-
         env: {
             test: {
                 CATALOG_API_TEST_SERVER: 'http://microservices-catalogapi-uparulek-142.mybluemix.net'
@@ -149,6 +147,8 @@ var gruntConfig = {
     });
 
 module.exports = function(grunt) {
+	gruntConfig.pkg = grunt.file.readJSON('package.json');
+
     grunt.initConfig(gruntConfig);
 
     grunt.loadNpmTasks('grunt-mocha-test');
