@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var desireds = require('./desireds');
+var desireds = require('./tests/desireds');
 
 var gruntConfig = {
         env: {

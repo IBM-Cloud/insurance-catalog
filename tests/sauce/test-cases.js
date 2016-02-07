@@ -68,7 +68,7 @@ describe('CatalogAPI(' + desired.browserName + ')', function() {
         browser
             .get(url)
             .title()
-            .should.become("Node.js2")
+            .should.become("Node.js")
             .nodeify(done);
     });
 
