@@ -5,7 +5,7 @@ var USE_FASTCACHE = false;
 
 /*
  * To enable the load generator and 'improved' cache mechanism below:
- * 1. remove the "res.json({"success": 0, "fail": 0, "time": 0})" line
+ * 1. remove the 'res.json({"success": 0, "fail": 0, "time": 0});' line
  * 2. uncomment the remaining method body
  */
 exports.loadTest = function(req, res) {
