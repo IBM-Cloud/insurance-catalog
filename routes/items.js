@@ -4,8 +4,9 @@ initDB();
 var USE_FASTCACHE = false;
 
 /*
- * To enable the load generator and 'improved' cache mechanism uncomment the block below.
- * IMPORTANT: Be sure to remove the current stub line that returns 0's.
+ * To enable the load generator and 'improved' cache mechanism below:
+ * 1. remove the "res.json({"success": 0, "fail": 0, "time": 0})" line
+ * 2. uncomment the remaining method body
  */
 exports.loadTest = function(req, res) {
     res.json({"success": 0, "fail": 0, "time": 0});
