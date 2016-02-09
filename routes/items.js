@@ -1,14 +1,12 @@
 var http = require('http');
 require('./db');
 initDB();
-
-/*
- * To enable the load generator and 'improved' cache mechanism uncomment the block in
- * loadTest below.
- * IMPORTANT: Be sure to remove the current stub line that returns 0's.
- */
 var USE_FASTCACHE = false;
 
+/*
+ * To enable the load generator and 'improved' cache mechanism uncomment the block below.
+ * IMPORTANT: Be sure to remove the current stub line that returns 0's.
+ */
 exports.loadTest = function(req, res) {
     res.json({"success": 0, "fail": 0, "time": 0});
 /*
