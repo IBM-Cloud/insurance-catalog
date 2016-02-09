@@ -3,9 +3,8 @@ require('./db');
 initDB();
 
 /*
- * To enable the 'improved' cache mechanism set USE_FASTCACHE to true.
- *
- * To enable the load generator uncomment the block in loadTest below.
+ * To enable the load generator and 'improved' cache mechanism uncomment the block in
+ * loadTest below.
  * IMPORTANT: Be sure to remove the current stub line that returns 0's.
  */
 var USE_FASTCACHE = false;
@@ -13,6 +12,7 @@ var USE_FASTCACHE = false;
 exports.loadTest = function(req, res) {
     res.json({"success": 0, "fail": 0, "time": 0});
 /*
+    USE_FASTCACHE = true;
     var testCount = req.query.count;
     testCount = testCount ? parseInt(testCount) : 100;
 
