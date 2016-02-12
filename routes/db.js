@@ -1,11 +1,21 @@
-/*eslint-env node */
-var cloudant = require('cloudant')(cloudantService.credentials.url);
-exports.cloudant = cloudant;
-var itemsDb = cloudant.use('items');
-exports.itemsDb = itemsDb;
+cloudant = require('cloudant')(cloudantService.credentials.url);
+db = cloudant.use('items');
+
+//Initiate the database.
+initDB = function() {
+    cloudant.db.create('items', function(err, body){
+    if(!err){
+        populateDB();
+        //console.log('Successfully created database and populated!');
+    }
+    else{
+        //console.log("Database already exists.");
+    }
+    });
+}
 
 //populate the db with these items.
-var populateDB = function() {
+populateDB = function() {
 
     var products = [
     {
@@ -73,25 +83,11 @@ var populateDB = function() {
         imgsrc:'http://upload.wikimedia.org/wikipedia/commons/0/07/Multi-use_water_bottle.JPG'
     }];
 
-    for (var p in products){
-        itemsDb.insert(products[p], function(err/*, body, header*/) {
-            if (err){
+    for(p in products){
+        db.insert(products[p], function(err, body, header){
+            if(err){
                 //console.log('error in populating the DB items: ' + err );
             }
         });
     }   
-};
-exports.populateDB = populateDB;
-
-//Initiate the database.
-var initDB = function() {
-    cloudant.db.create('items', function(err/*, body*/) {
-	    if (!err) {
-	        populateDB();
-	        //console.log('Successfully created database and populated!');
-	    } else {
-	        //console.log("Database already exists.");
-	    }
-    });
-};
-exports.initDB = initDB;
+}
