@@ -83,6 +83,35 @@ var populateDB = function() {
 };
 exports.populateDB = populateDB;
 
+var products_design =  { 
+    "views": 
+        { "products_by_name": 
+            { "map": function(doc) {
+                     emit(doc.name);
+            } } 
+        }
+    }
+;
+
+var updateDesign = function() {
+    //Should do something fancier to handle revisions but for now just create
+    //if it doesn't already exist
+    itemsDb.head('_design/products', function(err, _, headers) {
+        if (err) { //404...
+            itemsDb.insert(products_design, '_design/products', 
+            function(err) {
+                if (!err) {
+                    //console.log('Successfully updated design.');
+                } else {
+                    console.log('Error updating design - ' + err.statusCode + ' ' + err);
+                }
+            }
+            );
+        }
+    });
+
+};
+
 //Initiate the database.
 var initDB = function() {
     cloudant.db.create('items', function(err/*, body*/) {
@@ -92,6 +121,7 @@ var initDB = function() {
 	    } else {
 	        //console.log("Database already exists.");
 	    }
+            updateDesign();
     });
 };
 exports.initDB = initDB;
