@@ -101,14 +101,14 @@ exports.find = function(req, res) {
     });
 };
 
-//list all the database contents in order by product name
+//list all the database contents.
 exports.list = function(req, res) {
-    db.itemsDb.view('products', 'products_by_name', {include_docs:true}, function(err, body/*, headers*/) {
-        if (!err) {
-            res.send(body);
-            return;
-        } 
-        res.send({msg:'Error listing items: ' + err});
+    db.itemsDb.list({include_docs: true}, function(err, body/*, headers*/) {
+	    if (!err) {
+	        res.send(body);
+	        return;
+	    }
+	   	res.send({msg:'Error listing items: ' + err});
     });
 };
 
