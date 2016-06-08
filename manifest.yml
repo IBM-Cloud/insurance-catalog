@@ -9,6 +9,7 @@ declared-services:
 applications:
 - name: insurance-catalog
   memory: 128M
+  buildpack: sdk-for-nodejs
   instances: 1
   path: .
   services:
