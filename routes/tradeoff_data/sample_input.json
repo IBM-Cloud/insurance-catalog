@@ -20,6 +20,10 @@
       "goal": "max",
       "is_objective": true,
       "full_name": "Level of Care",
+      "range": {
+        "low": 1,
+        "high": 5
+      },
       "format": "number:0"
     },
     {
@@ -30,7 +34,7 @@
       "full_name": "Coverage Amount",
       "range": {
         "low": 0,
-        "high": 20000
+        "high": 10000
       },
       "format": "number:2"
     },

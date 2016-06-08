@@ -16,7 +16,8 @@ var populateDB = function() {
         minDays: 0,
         perAddDay: 5,
         levelCare: 2,
-        amount: 3000
+        amount: 3000,
+        rating: 73
     },
     {
         name: 'Extended Basic',
@@ -26,7 +27,8 @@ var populateDB = function() {
         minDays: 5,
         perAddDay: 5,
         levelCare: 2,
-        amount: 4000
+        amount: 4000,
+        rating: 67
     },
     {
         name: 'Essential',
@@ -37,7 +39,8 @@ var populateDB = function() {
         minDays: 3,
         perAddDay: 6,
         levelCare: 3,
-        amount: 6000
+        amount: 6000,
+        rating: 85
     },
     {
         name: 'Flight of Fancy',
@@ -48,7 +51,8 @@ var populateDB = function() {
         minDays: 6,
         perAddDay: 4,
         levelCare: 2,
-        amount: 5000
+        amount: 5000,
+        rating: 78
     },
     {
         name: 'Standard',
@@ -59,7 +63,8 @@ var populateDB = function() {
         minDays: 4,
         perAddDay: 8,
         levelCare: 3,
-        amount: 8000
+        amount: 8000,
+        rating: 90
     },
     {
         name: 'Standard Plus',
@@ -70,7 +75,8 @@ var populateDB = function() {
         minDays: 4,
         perAddDay: 6,
         levelCare: 3,
-        amount: 10000
+        amount: 10000,
+        rating: 82
     },
     {
         name: 'Premium',
@@ -81,7 +87,8 @@ var populateDB = function() {
         minDays: 5,
         perAddDay: 7,
         levelCare: 5,
-        amount: 15000
+        amount: 15000,
+        rating: 84
     },
     {
         name: 'Premium Deluxe',
@@ -91,7 +98,9 @@ var populateDB = function() {
         cancelFee: 400,
         minDays: 5,
         perAddDay: 10,
-        levelCare: 5
+        levelCare: 5,
+        amount: 50000,
+        rating: 95
     },
     {
         name: 'Getaway',
@@ -102,7 +111,8 @@ var populateDB = function() {
         minDays: 20,
         perAddDay: 0,
         levelCare: 4,
-        amount: 20000
+        amount: 20000,
+        rating: 78
     }];
 
     for (var p in policies){
