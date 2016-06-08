@@ -1,0 +1,82 @@
+{
+  "subject": "policies",
+  "generate_visualization": false,
+  "columns": [
+    {
+      "key": "cost",
+      "type": "numeric",
+      "goal": "min",
+      "is_objective": true,
+      "full_name": "Cost",
+      "range": {
+        "low": 0,
+        "high": 5000
+      },
+      "format": "number:2"
+    },
+    {
+      "key": "levelCare",
+      "type": "numeric",
+      "goal": "max",
+      "is_objective": true,
+      "full_name": "Level of Care",
+      "format": "number:0"
+    },
+    {
+      "key": "amount",
+      "type": "numeric",
+      "goal": "max",
+      "is_objective": true,
+      "full_name": "Coverage Amount",
+      "range": {
+        "low": 0,
+        "high": 20000
+      },
+      "format": "number:2"
+    },
+    {
+      "key": "rating",
+      "type": "numeric",
+      "goal": "max",
+      "is_objective": true,
+      "full_name": "Average Rating",
+      "range": {
+        "low": 0,
+        "high": 100
+      },
+      "format": "number:0"
+    }
+  ],
+  "options": [
+    {
+      "key": "1",
+      "name": "Basic",
+      "values": {
+        "cost": 350,
+        "levelCare": 2,
+        "amount": 3300,
+        "rating": 73
+      }
+    },
+    {
+      "key": "2",
+      "name": "Standard",
+      "values": {
+        "cost": 550,
+        "levelCare": 3,
+        "amount": 8450,
+        "rating": 80
+      }
+    },
+    {
+      "key": "3",
+      "name": "Premium",
+      "values": {
+        "cost": 1125,
+        "levelCare": 5,
+        "amount": 1600,
+        "rating": 84
+      }
+    }
+  ]
+}

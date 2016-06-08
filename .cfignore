@@ -2,3 +2,5 @@ node_modules
 launchConfigurations/
 .git/
 *.DS_STORE
+*.log
+vcap-local.json

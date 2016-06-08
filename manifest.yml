@@ -3,6 +3,9 @@ declared-services:
   policy-db:
     label: cloudantNoSQLDB
     plan: Shared
+  insurance-tradeoff-analytics:
+    label: tradeoff_analytics
+    plan: standard
 applications:
 - name: insurance-catalog
   memory: 128M
@@ -10,3 +13,4 @@ applications:
   path: .
   services:
   - policy-db
+  - insurance-tradeoff-analytics

@@ -1,0 +1,30 @@
+{
+  "services": {
+    "cloudantNoSQLDB": [
+      {
+        "name": "policy-db",
+        "label": "cloudantNoSQLDB",
+        "plan": "Shared",
+        "credentials": {
+          "username": "USERNAME",
+          "password": "PASSWORD",
+          "host": "HOSTNAME",
+          "port": 443,
+          "url": "URL"
+        }
+      }
+    ],
+    "tradeoff_analytics": [
+      {   
+        "name": "insurance-tradeoff-analytics",
+        "label": "tradeoff_analytics",
+        "plan": "standard",
+        "credentials": {
+          "url": "https://gateway.watsonplatform.net/tradeoff-analytics/api",
+          "password": "PASSWORD",
+          "username": "USERNAME"
+        }
+      }
+    ]
+  }
+}
