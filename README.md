@@ -33,7 +33,7 @@ In order to deploy the full set of microservices involved in the insurance-store
 7. Create the [Cloudant service][cloudant_service_url] in Bluemix
 
   ```
-  $ cf create-service speech_to_text standard rtt-speech-to-text
+  $ cf create-service cloudantNoSQLDB Shared policy-db
   ```
 
 8. Push the app to Bluemix.
@@ -42,7 +42,7 @@ In order to deploy the full set of microservices involved in the insurance-store
   $ cf push
   ```
 
-And voila! You now have your very own instance of Real Time Tone running on Bluemix.
+And voila! You now have your very own instance of the Insurance Catalog API running on Bluemix.
 
 ## Troubleshooting
 

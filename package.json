@@ -1,7 +1,7 @@
 {
   "name": "insurance-catalog",
   "version": "0.0.1",
-  "description": "A Node.js for interacting with insurance policies.",
+  "description": "A Node.js app for interacting with insurance policies.",
   "scripts": {
     "start": "node app.js"
   },
