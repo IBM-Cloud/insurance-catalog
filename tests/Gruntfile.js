@@ -70,7 +70,7 @@ var gruntConfig = {
         },
 
         instrument: {
-            files: ['routes/items.js'],
+            files: ['routes/policies.js'],
             options: {
                 lazy: false,
                 basePath: 'tests/server/coverage/instrumented/'

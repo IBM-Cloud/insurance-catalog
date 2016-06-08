@@ -14,21 +14,21 @@
 
     describe('API', function() {
         this.timeout(10000);
-        it('list all items', function(done) {
-            utils.makeRestCall({method: 'GET'}, '/items', null, function(err, resp, body) {
+        it('list all policies', function(done) {
+            utils.makeRestCall({method: 'GET'}, '/policies', null, function(err, resp, body) {
                 //console.log(JSON.stringify(body, null, 4));
                 assert(resp.statusCode === 200, 'Unexpected status code: ' + resp.statusCode);
-                assert(body.total_rows === 8, "Incorrect total rows: ", body.total_rows);
+                assert(body.total_rows === 9, "Incorrect total rows: ", body.total_rows);
                 done();
             });
         });
 
-        it('add an item', function(done) {
-            var postbody = {name: 'Test Table',color: 'tan', quantity: 5, description: 'A Beautiful table.',usaDollarPrice: 180.00, imgsrc:'http://image.jpg'};
-            utils.makeRestCall({method: 'POST', body: postbody}, '/items', null, function(err, resp, body) {
+        it('add a policy', function(done) {
+            var postbody = {name: 'Test Policy', desc: 'Sample desc', baseCost: 5000, perAddTraveler: 5, cancelFee: 150, minDays: 3, perAddDay: 5, levelCare: 3, amount: 10000};
+            utils.makeRestCall({method: 'POST', body: postbody}, '/policies', null, function(err, resp, body) {
                 //console.log(JSON.stringify(body, null, 4));
                 assert(resp.statusCode === 200, 'Unexpected status code: ' + resp.statusCode);
-                assert(body.msg === "Successfully created item", "Incorrect message received: ", body.msg);
+                assert(body.msg === "Successfully created policy", "Incorrect message received: ", body.msg);
                 done();
             });
         });
@@ -42,17 +42,17 @@
             });
         });
 
-        it('get item using id', function(done) {
-            utils.getItems('Test Table', function(err, data) {
+        it('get policy using id', function(done) {
+            utils.getPolicies('Test Policy', function(err, data) {
                 if(err) {
-                    assert.fail("Failed to get items using name");
+                    assert.fail("Failed to get policies using name");
                     done();
                 } else {
                     if(data.length === 0) {
                         return done();
                     }
-                    async.every(data, function(item, callback) {
-                        utils.makeRestCall({method: 'GET'}, '/items/' + item._id, null, function(err, resp, body) {
+                    async.every(data, function(policy, callback) {
+                        utils.makeRestCall({method: 'GET'}, '/policies/' + policy._id, null, function(err, resp, body) {
                             //console.log(JSON.stringify(body, null, 4));
                             if(resp.statusCode === 200) {
                                 return callback(true);
@@ -62,7 +62,7 @@
                         });
                     }, function(result) {
                         if(result === false) {
-                            assert("failed while getting the items");
+                            assert("failed while getting the policies");
                         }
                         done();
                     });
@@ -70,18 +70,18 @@
             });
         });
 
-        it('update item using id', function(done) {
-            utils.getItems('Test Table', function(err, data) {
+        it('update policy using id', function(done) {
+            utils.get('Test Policy', function(err, data) {
                 if(err) {
-                    assert.fail("Failed to get items using name");
+                    assert.fail("Failed to get policies using name");
                     done();
                 } else {
                     if(data.length === 0) {
                         return done();
                     }
-                    async.every(data, function(item, callback) {
-                        item.additional = "Something new";
-                        utils.makeRestCall({method: 'PUT', body: item}, '/items/' + item._id, null, function(err, resp, body) {
+                    async.every(data, function(policy, callback) {
+                        policy.additional = "Something new";
+                        utils.makeRestCall({method: 'PUT', body: item}, '/policies/' + policy._id, null, function(err, resp, body) {
                             //console.log(JSON.stringify(body, null, 4));
                             if( (resp.statusCode === 200) && (body.additional === 'Something new') ) {
                                 return callback(true);
@@ -91,7 +91,7 @@
                         });
                     }, function(result) {
                         if(result === false) {
-                            assert("failed to update an item");
+                            assert("failed to update a policy");
                         }
                         done();
                     });
@@ -99,19 +99,19 @@
             });
         });
 
-        it('delete item using id', function(done) {
-            utils.getItems('Test Table', function(err, data) {
+        it('delete policy using id', function(done) {
+            utils.getItems('Test Policy', function(err, data) {
                 if(err) {
-                    assert.fail("Failed to get items using name");
+                    assert.fail("Failed to get policies using name");
                     done();
                 } else {
                     if(data.length === 0) {
                         return done();
                     }
-                    async.every(data, function(item, callback) {
-                        utils.makeRestCall({method: 'DELETE'}, '/items/' + item._id, null, function(err, resp, body) {
+                    async.every(data, function(policy, callback) {
+                        utils.makeRestCall({method: 'DELETE'}, '/policies/' + policy._id, null, function(err, resp, body) {
                             //console.log(JSON.stringify(body, null, 4));
-                            if( (resp.statusCode === 200) && (body.msg === "Successfully deleted item") ) {
+                            if( (resp.statusCode === 200) && (body.msg === "Successfully deleted policy") ) {
                                 return callback(true);
                             } else {
                                 return callback(false);
@@ -119,7 +119,7 @@
                         });
                     }, function(result) {
                         if(result === false) {
-                            assert("failed to delete an item");
+                            assert("failed to delete a policy");
                         }
                         done();
                     });

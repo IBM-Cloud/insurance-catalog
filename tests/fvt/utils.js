@@ -22,18 +22,18 @@ exports.makeRestCall = function(method, url, headers, callback) {
     });
 };
 
-exports.getItems = function(itemname, callback) {
-    exports.makeRestCall({method: 'GET'}, '/items', null, function(err, resp, body) {
+exports.getPolicies = function(policyName, callback) {
+    exports.makeRestCall({method: 'GET'}, '/policies', null, function(err, resp, body) {
         if(resp.statusCode === 200) {
             var returndocs = [];
             for(var i = 0; i < body.total_rows; i++) {
-                if(body.rows[i].doc.name === itemname) {
+                if(body.rows[i].doc.name === policyName) {
                     returndocs.push(body.rows[i].doc);
                 }
             }
             return callback(null, returndocs);
         } else {
-            return callback("Failed to get Items", null);
+            return callback("Failed to get Policies", null);
         }
     });
 }

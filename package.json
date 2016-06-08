@@ -1,7 +1,7 @@
 {
-  "name": "Microservices_CatalogAPI",
+  "name": "insurance-catalog",
   "version": "0.0.1",
-  "description": "A microservices sample catalog API.",
+  "description": "A Node.js for interacting with insurance policies.",
   "scripts": {
     "start": "node app.js"
   },
@@ -13,7 +13,6 @@
     "cors": "2.5.x",
     "express": "3.20.x"
   },
-  "repository": {},
   "devDependencies": {
     "async": "^1.5.2",
     "chai": "^3.4.1",
@@ -36,5 +35,14 @@
     "sinon": "^1.17.2",
     "spec-xunit-file": "0.0.1-3",
     "wd": "latest"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBM-Bluemix/insurance-catalog.git"
+  },
+  "engines": {
+    "node": "4.4.x"
+  },
+  "author": "IBM Corp.",
+  "license": "Apache-2.0"
 }

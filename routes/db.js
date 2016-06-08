@@ -1,82 +1,114 @@
 /*eslint-env node */
 var cloudant = require('cloudant')(cloudantService.credentials.url);
 exports.cloudant = cloudant;
-var itemsDb = cloudant.use('items');
-exports.itemsDb = itemsDb;
+var policiesDb = cloudant.use('policies');
+exports.policiesDb = policiesDb;
 
-//populate the db with these items.
+//populate the db with these policies.
 var populateDB = function() {
 
-    var products = [
+    var policies = [
     {
-        name: 'War Room Table',
-        color: 'tan',
-        quantity: 5,
-        description: 'A Beautiful War Room table, perfect for collaborative work spaces!',
-        usaDollarPrice: 180.00,
-        imgsrc:'http://upload.wikimedia.org/wikipedia/commons/f/fd/Meeting_room,_table_and_paper_board.jpg'
+        name: 'Basic',
+        desc: 'A low-cost package for the penny-pincher',
+        baseCost: 300,
+        perAddTraveler: 20,
+        minDays: 0,
+        perAddDay: 5,
+        levelCare: 2,
+        amount: 3000
     },
     {
-        name: 'Foosball Table',
-        color: 'white',
-        quantity: 53,
-        description: 'Wooden table, some assembly required.',
-        usaDollarPrice: 125.99,
-        imgsrc:'http://upload.wikimedia.org/wikipedia/commons/6/62/FAS_Foosball_table_1.jpg'
+        name: 'Extended Basic',
+        desc: 'The basic package for extended stays',
+        baseCost: 400,
+        perAddTraveler: 10,
+        minDays: 5,
+        perAddDay: 5,
+        levelCare: 2,
+        amount: 4000
     },
     {
-        name: 'Ping pong table',
-        color: 'green',
-        quantity: 7,
-        description: 'A very sturdy ping pong table. Includes 2 paddles and a regulation sized net.',
-        usaDollarPrice: 199.99,
-        imgsrc:'http://upload.wikimedia.org/wikipedia/commons/0/0c/Table_tennis_table_007.JPG'
-    },  
-    {
-        name: 'IBM Coffee Beans',
-        color: 'brown',
-        quantity: 155,
-        description: 'These have been fueling IBMers for ages!',
-        usaDollarPrice: 15.00,
-        imgsrc:'http://upload.wikimedia.org/wikipedia/commons/c/c5/Roasted_coffee_beans.jpg'
+        name: 'Essential',
+        desc: 'Everything you need, none of the frills',
+        baseCost: 500,
+        perAddTraveler: 10,
+        cancelFee: 100,
+        minDays: 3,
+        perAddDay: 6,
+        levelCare: 3,
+        amount: 6000
     },
     {
-        name: 'Ping pong balls',
-        color: 'white',
-        quantity: 97,
-        description: '3 star ping pong balls, regulation size.',
-        usaDollarPrice: 12.00,
-        imgsrc:'http://upload.wikimedia.org/wikipedia/commons/f/fd/Tischtennisball-weiss-004.jpg'
+        name: 'Flight of Fancy',
+        desc: 'For the indecisive traveler unsure of their travel plans',
+        baseCost: 500,
+        perAddTraveler: 15,
+        cancelFee: 0,
+        minDays: 6,
+        perAddDay: 4,
+        levelCare: 2,
+        amount: 5000
     },
     {
-        name: 'Travel Backpack',
-        color: 'green',
-        quantity: 64,
-        description: 'This backpack is perfect for traveling.',
-        usaDollarPrice: 49.99,
-        imgsrc:'http://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Rucksack_Schweizer_Armee_1960er_a.jpg/828px-Rucksack_Schweizer_Armee_1960er_a.jpg'
+        name: 'Standard',
+        desc: 'Not too much. Not too little. Just right',
+        baseCost: 500,
+        perAddTraveler: 20,
+        cancelFee: 200,
+        minDays: 4,
+        perAddDay: 8,
+        levelCare: 3,
+        amount: 8000
     },
     {
-        name: 'Monitor',
-        color: 'white',
-        quantity: 24,
-        description: 'A computer monitor.',
-        usaDollarPrice: 159.99,
-        imgsrc:'http://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/LG_L194WT-SF_LCD_monitor.jpg/1191px-LG_L194WT-SF_LCD_monitor.jpg'
+        name: 'Standard Plus',
+        desc: 'Just the right amount of coverage and a cherry on top',
+        baseCost: 800,
+        perAddTraveler: 15,
+        cancelFee: 200,
+        minDays: 4,
+        perAddDay: 6,
+        levelCare: 3,
+        amount: 10000
     },
     {
-        name: 'Water Bottle',
-        color: 'orange, blue, yellow',
-        quantity: 71,
-        description: '3 different colors to match your personality!',
-        usaDollarPrice: 19.99,
-        imgsrc:'http://upload.wikimedia.org/wikipedia/commons/0/07/Multi-use_water_bottle.JPG'
+        name: 'Premium',
+        desc: 'Our package for the risk-averse traveler',
+        baseCost: 1000,
+        perAddTraveler: 10,
+        cancelFee: 300,
+        minDays: 5,
+        perAddDay: 7,
+        levelCare: 5,
+        amount: 15000
+    },
+    {
+        name: 'Premium Deluxe',
+        desc: 'Complete coverage and the kitchen sink',
+        baseCost: 15000,
+        perAddTraveler: 10,
+        cancelFee: 400,
+        minDays: 5,
+        perAddDay: 10,
+        levelCare: 5
+    },
+    {
+        name: 'Getaway',
+        desc: 'For travelers about to embark on the journey of their life',
+        baseCost: 1500,
+        perAddTraveler: 5,
+        cancelFee: 500,
+        minDays: 20,
+        perAddDay: 0,
+        levelCare: 4,
+        amount: 20000
     }];
 
-    for (var p in products){
-        itemsDb.insert(products[p], function(err/*, body, header*/) {
+    for (var p in policies){
+        policiesDb.insert(policies[p], function(err/*, body, header*/) {
             if (err){
-                //console.log('error in populating the DB items: ' + err );
+                //console.log('error in populating the DB policies: ' + err );
             }
         });
     }   
@@ -85,7 +117,7 @@ exports.populateDB = populateDB;
 
 //Initiate the database.
 var initDB = function() {
-    cloudant.db.create('items', function(err/*, body*/) {
+    cloudant.db.create('policies', function(err/*, body*/) {
 	    if (!err) {
 	        populateDB();
 	        //console.log('Successfully created database and populated!');

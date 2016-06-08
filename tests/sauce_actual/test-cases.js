@@ -68,7 +68,7 @@ describe('CatalogAPI(' + desired.browserName + ')', function() {
         browser
             .get(url)
             .title()
-            .should.become("Catalog RESTful API")
+            .should.become("Policy Catalog API")
             .nodeify(done);
     });
 });

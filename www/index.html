@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Catalog RESTful API</title>
+	<title>Policy Catalog API</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="style.css" />
 </head>
@@ -11,21 +11,21 @@
 			<td style='width: 30%;'><img src='images/newapp-icon.png'>
 			</td>
 			<td>
-				<h1 id = "message">Node.js Catalog RESTful API</h1>
+				<h1 id = "message">Node.js Policy Catalog API</h1>
 				<p class='description'>
-				GET <a href="/items">/items</a> to see all the items.
+				GET <a href="/policies">/policies</a> to see all the policies.
 				<br><br>
-				GET /items/{id} retrieves an item from the DB using an ID.
+				GET /policies/{id} retrieves a policy from the DB using an ID.
 				<br><br>
 				GET /db/{option} Create (and populate) or delete the DB. Option is either 'create' or 'delete.'
 				<br><br>
 				GET /fib Computes the Fibonacci sequence of 20.
 				<br><br>
-				PUT /items/{id} updates an item using an ID.
+				PUT /policies/{id} updates a policy using an ID.
 				<br><br>
-				DELETE /items/{id} removes an item from the DB using an ID.
+				DELETE /policies/{id} removes a policy from the DB using an ID.
 				<br><br>
-				POST /items creates an new item. <br> &nbsp;&nbsp;Ex: {name: 'War Room Table',color: 'tan', quantity: 5, description: 'A Beautiful table.',usaDollarPrice: 180.00,	imgsrc:'http://image.jpg'}
+				POST /policies creates a new policy. <br> &nbsp;&nbsp;Ex: {name:'Basic',desc:'A low-cost package for the penny-pincher', baseCost:300,perAddTraveler:20,minDays: 0,perAddDay: 5,levelCare: 2,amount: 3000}
 			</td>
 		</tr>
 	</table>

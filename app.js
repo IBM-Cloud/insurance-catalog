@@ -6,8 +6,8 @@ var cors = require('cors');
 
 //Setup Cloudant Service.
 var appEnv = cfenv.getAppEnv();
-cloudantService = appEnv.getService("myMicroservicesCloudant");
-var items = require('./routes/items');
+cloudantService = appEnv.getService("policy-db");
+var policies = require('./routes/policies');
 
 //Setup middleware.
 var app = express();
@@ -18,14 +18,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'www')));
 
 //REST HTTP Methods
-app.get('/db/:option', items.dbOptions);
-app.get('/items', items.list);
-app.get('/fib', items.fib);
-app.get('/loadTest', items.loadTest);
-app.get('/items/:id', items.find);
-app.post('/items', items.create);
-app.put('/items/:id', items.update);
-app.delete('/items/:id', items.remove);
+app.get('/db/:option', policies.dbOptions);
+app.get('/policies', policies.list);
+app.get('/fib', policies.fib);
+app.get('/loadTest', policies.loadTest);
+app.get('/policies/:id', policies.find);
+app.post('/policies', policies.create);
+app.put('/policies/:id', policies.update);
+app.delete('/policies/:id', policies.remove);
 
 app.listen(appEnv.port, appEnv.bind);
 console.log('App started on ' + appEnv.bind + ':' + appEnv.port);
