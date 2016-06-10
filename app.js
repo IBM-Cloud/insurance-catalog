@@ -4,7 +4,7 @@ var cfenv = require("cfenv");
 var path = require('path');
 var cors = require('cors');
 
-// Setup environment variables
+// Setup the required environment variables
 var vcapLocal = null;
 try {
   vcapLocal = require("./vcap-local.json");
@@ -23,7 +23,7 @@ tradeoffService.version = 'v1';
 var policies = require('./routes/policies');
 var tradeoff = require('./routes/tradeoff');
 
-// Setup middleware.
+// Setup express middleware.
 var app = express();
 app.use(cors());
 app.use(bodyParser.json());
