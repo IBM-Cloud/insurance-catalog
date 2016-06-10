@@ -50,6 +50,22 @@ In order to deploy the full set of microservices involved in the insurance-store
 
 And voila! You now have your very own instance of the Insurance Catalog API running on Bluemix.
 
+## API documentation
+
+**`POST /tradeoff`:** Takes input criteria for a prospective trip and returns eligible policies and their Tradeoff Analytics results.
+
+_**params**_  
+**tripDuration** _(int)_ - The length of the trip in days  
+**addTravelers** _(int[ ])_ - Age of each additional traveler, not including policy owner  
+**cancelCov** _(boolean)_ - Indicatates whether or not the policy must be eligible for a refun upon cancellation  
+**tripCost** _(int)_ - The estimated cost of the trip
+
+_**results**_  
+[**problem.columns**][column_spec_url] _(object[ ])_ - Conditions used to evaluate the tradeoff between eligible policies  
+**subject** _(string)_ - Type of input on which the evaluation was performed  
+**options** _(policy[ ])_ - Policies that were evaluated  
+[**solutions**][solution_spec_url] _(object[ ])_ - Analytical data prepared by the Tradeoff Analytics service for each option of the decision problem
+
 ## Troubleshooting
 
 The primary source of debugging information for your Bluemix app is the logs. To see them, run the following command using the Cloud Foundry CLI:
@@ -68,3 +84,5 @@ For more detailed information on troubleshooting your application, see the [Trou
 [ta_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tradeoff-analytics.html
 [cloudant_service_url]: https://new-console.ng.bluemix.net/catalog/services/cloudant-nosql-db/
 [tradeoff_analytics_service_url]: https://new-console.ng.bluemix.net/catalog/services/tradeoff-analytics/
+[column_spec_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tradeoff-analytics/api/v1/?node#Column
+[solution_spec_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tradeoff-analytics/api/v1/?node#Solution
