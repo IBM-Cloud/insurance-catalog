@@ -157,6 +157,7 @@ function buildAnswer(tradeoffResult, policies) {
       delete curPolicy._rev;
       delete curPolicy.baseCost;
       delete curPolicy.amount;
+      delete curPolicy.minDays;
       delete curPolicy.perAddTraveler;
       delete curPolicy.perAddDay;
 

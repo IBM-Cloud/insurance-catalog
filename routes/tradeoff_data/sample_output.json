@@ -6,7 +6,7 @@
       "full_name": "Cost",
       "range": {
         "low": 0,
-        "high": 10000
+        "high": 1000
       },
       "format": "number:0 | taPrefix:'$'",
       "description": "Cost of the policy",
@@ -40,7 +40,7 @@
       "key": "refund",
       "full_name": "Refunded Percentage",
       "range": {
-        "low": 0,
+        "low": 20,
         "high": 100
       },
       "format": "number:0 | taSuffix:'%'",
@@ -64,99 +64,74 @@
   ],
   "policies": [
     {
-      "name": "Basic",
-      "desc": "A low-cost package for the penny-pincher",
-      "cancelRefund": 0,
-      "minDays": 0,
-      "levelCare": 2,
-      "review": 3,
-      "cost": 334,
-      "coverage": 2672,
-      "id": "425c6c5394ff9482befd1226140908f8"
-    },
-    {
       "name": "Essential",
       "desc": "Everything you need, none of the frills",
       "cancelRefund": 20,
-      "minDays": 3,
       "levelCare": 3,
       "review": 4,
-      "cost": 744,
-      "coverage": 7440,
+      "cost": 463,
+      "coverage": 4630,
       "id": "fc721ecc418397714e084cf3c9116318"
-    },
-    {
-      "name": "Extended Basic",
-      "desc": "The basic package for extended stays",
-      "cancelRefund": 0,
-      "minDays": 5,
-      "levelCare": 2,
-      "review": 2,
-      "cost": 289,
-      "coverage": 2312,
-      "id": "fc721ecc418397714e084cf3c9117781"
     },
     {
       "name": "Flight of Fancy",
       "desc": "For the indecisive traveler unsure of their travel plans",
       "cancelRefund": 100,
-      "minDays": 6,
       "levelCare": 2,
       "review": 3,
-      "cost": 518,
-      "coverage": 4144,
+      "cost": 393,
+      "coverage": 3144,
       "id": "bac9c5521d53275a085dbf1931b35eec"
-    },
-    {
-      "name": "Getaway",
-      "desc": "For travelers about to embark on the journey of their life",
-      "cancelRefund": 40,
-      "minDays": 20,
-      "levelCare": 4,
-      "review": 3,
-      "cost": 420,
-      "coverage": 3360,
-      "id": "425c6c5394ff9482befd122614090924"
     },
     {
       "name": "Premium",
       "desc": "Our package for the risk-averse traveler",
       "cancelRefund": 80,
-      "minDays": 5,
       "levelCare": 5,
       "review": 4,
-      "cost": 1299,
-      "coverage": 9093,
+      "cost": 809,
+      "coverage": 5663,
       "id": "fc721ecc418397714e084cf3c9115bc1"
+    },
+    {
+      "name": "Standard",
+      "desc": "Not too much. Not too little. Just right",
+      "cancelRefund": 50,
+      "levelCare": 3,
+      "review": 5,
+      "cost": 777,
+      "coverage": 6216,
+      "id": "626cf57c5520ecd2d4d8caed634fc961"
+    },
+    {
+      "name": "Standard Plus",
+      "desc": "Just the right amount of coverage and a cherry on top",
+      "cancelRefund": 70,
+      "levelCare": 3,
+      "review": 4,
+      "cost": 907,
+      "coverage": 9070,
+      "id": "0ec17005a35cedf72dd54c6806bf6b14"
     }
   ],
   "map": {
     "nodes": [
       {
         "coordinates": {
-          "x": 2,
-          "y": 0.00000000000000027755575615628914
-        },
-        "solution_refs": [
-          "fc721ecc418397714e084cf3c9117781"
-        ]
-      },
-      {
-        "coordinates": {
-          "x": 3.0332640805765445,
-          "y": 1.712415060606017
-        },
-        "solution_refs": [
-          "425c6c5394ff9482befd1226140908f8"
-        ]
-      },
-      {
-        "coordinates": {
-          "x": 6.032704557470773,
-          "y": 1.6544769421646413
+          "x": 3.999626984596152,
+          "y": -0.03862541229425015
         },
         "solution_refs": [
           "bac9c5521d53275a085dbf1931b35eec"
+        ]
+      },
+      {
+        "coordinates": {
+          "x": 2.033450588278469,
+          "y": 1.731727766753142
+        },
+        "solution_refs": [
+          "fc721ecc418397714e084cf3c9116318"
         ]
       },
       {
@@ -165,16 +140,25 @@
           "y": 3.4441428273591588
         },
         "solution_refs": [
-          "425c6c5394ff9482befd122614090924"
+          "fc721ecc418397714e084cf3c9115bc1"
         ]
       },
       {
         "coordinates": {
-          "x": 5.099792241729634,
-          "y": 5.13724518181805
+          "x": 5.066341653451166,
+          "y": 3.4055174150649083
         },
         "solution_refs": [
-          "fc721ecc418397714e084cf3c9116318"
+          "0ec17005a35cedf72dd54c6806bf6b14"
+        ]
+      },
+      {
+        "coordinates": {
+          "x": 4.099978749431558,
+          "y": 5.1565578879651754
+        },
+        "solution_refs": [
+          "626cf57c5520ecd2d4d8caed634fc961"
         ]
       }
     ],
@@ -218,23 +202,23 @@
     "version": "APIV1-ANN",
     "config": {
       "params": {
-        "rInit": 4.815101245041479,
+        "rInit": 3.6113259337811097,
         "rFinish": 1,
-        "seed": 20021,
-        "rAnchor": 1.25,
+        "seed": 20001,
+        "rAnchor": 1.3333333333333333,
         "alpha_init": 0.75,
         "map_size": 45,
-        "training_period": 200,
-        "anchor_epoch": 3
+        "training_period": 100,
+        "anchor_epoch": 1
       },
       "drivers": {
         "r_fin": 1,
-        "r_init": 1.2,
-        "r_anchor_init": 1.5,
-        "training_length": 200,
+        "r_init": 0.9,
+        "r_anchor_init": 1.2,
+        "training_length": 100,
         "max_map_size": 200,
         "alpha_init": 0.75,
-        "training_anchors": 0.5,
+        "training_anchors": 0.25,
         "data_multiplier": 9
       }
     },
@@ -242,10 +226,10 @@
       "mqe": "NaN",
       "tau": "NaN",
       "somers": "NaN",
-      "kappa": 0.707936507936508,
+      "kappa": 0.72,
       "kappa_delta": "NaN",
       "weighted_kappa": "NaN",
-      "final_kappa": 0.7650793650793651
+      "final_kappa": 0.72
     }
   }
 }
