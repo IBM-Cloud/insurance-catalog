@@ -25,10 +25,10 @@ exports.evaluate = function(req, res) {
         var options = policies.map(function(policy) {
           return policyToOption(policy, tripDuration, addTravelers, tripCost);
         });
-        if (policyCost)
-          options = filterOptionsOnCost(options, policyCost);
 
-        var problem = require("./tradeoff_data/policies.template.json");
+        // Create the problem to be sent to TA
+        var templateFile = "./tradeoff_data/policies.template.json",
+            problem = setColumns(templateFile, refund, reviews, policyCost);
         problem.options = options;
 
         // Call Tradeoff Analytics service
@@ -51,12 +51,10 @@ exports.evaluate = function(req, res) {
  */
 function getEligiblePolicies(policyDocs, tripDuration, minRefund, minReview) {
   var eligiblePolicies = [];
+
+  // Add policies that qualify for number of days
   for (var policy in policyDocs) {
-    // If policy exceeds minimum duration, offers a large enough
-    // cancellation refund, and review high enough, it is eligible
-    if (policyDocs[policy].doc.minDays <= tripDuration &&
-        (!minRefund || policyDocs[policy].doc.cancelRefund >= minRefund) &&
-        (!minReview || policyDocs[policy].doc.review >= minReview))
+    if (policyDocs[policy].doc.minDays <= tripDuration)
       eligiblePolicies.push(policyDocs[policy].doc);
   }
 
@@ -97,22 +95,30 @@ function policyToOption(policyDoc, tripDuration, addTravelers, tripCost) {
   option.values.levelCare = policyDoc.levelCare;
   option.values.amount = Math.round(policyDoc.amount * option.values.cost);
   option.values.review = policyDoc.review;
+  option.values.refund = policyDoc.cancelRefund;
 
   return option;
 }
 
 
 /**
- * Removes policy options that are too expensive per the user's input
+ * Sets problem columns and adjusts ranges where needed
  */
-function filterOptionsOnCost(options, policyCost) {
-  var validOptions = [];
-  for (var policy in options) {
-    if (options[policy].values.cost <= policyCost)
-      validOptions.push(options[policy]);
+function setColumns(template, refundMin, reviewMin, policyCostMax) {
+  var problem = require(template),
+      curColumn;
+
+  for (var column in problem.columns) {
+    curColumn = problem.columns[column];
+    if (policyCostMax && curColumn.key === "cost")
+      curColumn.range.high = policyCostMax;
+    else if (reviewMin && curColumn.key === "review")
+      curColumn.range.low = reviewMin;
+    else if (refundMin && curColumn.key === "refund")
+      curColumn.range.low = refundMin;
   }
 
-  return validOptions;
+  return problem;
 }
 
 

@@ -38,6 +38,19 @@
       "format": "number:0 | taPrefix:'$'"
     },
     {
+      "key": "refund",
+      "description": "Percentage of policy cost refunded upon cancellation",
+      "type": "numeric",
+      "goal": "max",
+      "is_objective": true,
+      "full_name": "Refunded Percentage",
+      "range": {
+        "low": 0,
+        "high": 100
+      },
+      "format": "number:0 | taSuffix:'%'"
+    },
+    {
       "key": "review",
       "description": "Average customer review for the policy",
       "type": "numeric",
@@ -45,7 +58,7 @@
       "is_objective": true,
       "full_name": "Average Review",
       "range": {
-        "low": 0,
+        "low": 1,
         "high": 5
       },
       "format": "number:0 | taSuffix:' stars'"
