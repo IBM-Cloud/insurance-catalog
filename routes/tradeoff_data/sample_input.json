@@ -1,21 +1,23 @@
 {
   "subject": "policies",
-  "generate_visualization": false,
+  "generate_visualization": true,
   "columns": [
     {
       "key": "cost",
+      "description": "Cost of the policy",
       "type": "numeric",
       "goal": "min",
       "is_objective": true,
       "full_name": "Cost",
       "range": {
         "low": 0,
-        "high": 5000
+        "high": 1000
       },
-      "format": "number:2"
+      "format": "number:0 | taPrefix:'$'"
     },
     {
       "key": "levelCare",
+      "description": "Level of care offered by the policy",
       "type": "numeric",
       "goal": "max",
       "is_objective": true,
@@ -28,6 +30,7 @@
     },
     {
       "key": "amount",
+      "description": "Total amount covered by the policy",
       "type": "numeric",
       "goal": "max",
       "is_objective": true,
@@ -36,50 +39,51 @@
         "low": 0,
         "high": 10000
       },
-      "format": "number:2"
+      "format": "number:0 | taPrefix:'$'"
     },
     {
-      "key": "rating",
+      "key": "review",
+      "description": "Average customer review for the policy",
       "type": "numeric",
       "goal": "max",
       "is_objective": true,
-      "full_name": "Average Rating",
+      "full_name": "Average Review",
       "range": {
         "low": 0,
-        "high": 100
+        "high": 5
       },
-      "format": "number:0"
+      "format": "number:0 | taSuffix:' stars'"
     }
   ],
   "options": [
     {
-      "key": "1",
+      "key": "000dadaa16ab58c52abe255b19ad3a61",
       "name": "Basic",
       "values": {
         "cost": 350,
         "levelCare": 2,
         "amount": 3300,
-        "rating": 73
+        "review": 3
       }
     },
     {
-      "key": "2",
+      "key": "840583bbc1e49eabee6098f8bddbb28b",
       "name": "Standard",
       "values": {
         "cost": 550,
         "levelCare": 3,
         "amount": 8450,
-        "rating": 80
+        "review": 5
       }
     },
     {
-      "key": "3",
+      "key": "34c5988b4ec2346adfc300e5e87b4e03",
       "name": "Premium",
       "values": {
         "cost": 1125,
         "levelCare": 5,
         "amount": 1600,
-        "rating": 84
+        "review": 4
       }
     }
   ]

@@ -11,108 +11,110 @@ var populateDB = function() {
     {
         name: 'Basic',
         desc: 'A low-cost package for the penny-pincher',
-        baseCost: 300,
+        baseCost: 100,
         perAddTraveler: 20,
+        cancelRefund: 0,
         minDays: 0,
         perAddDay: 5,
         levelCare: 2,
-        amount: 3000,
-        rating: 73
+        amount: 8,
+        review: 3
     },
     {
         name: 'Extended Basic',
         desc: 'The basic package for extended stays',
-        baseCost: 400,
-        perAddTraveler: 10,
+        baseCost: 150,
+        perAddTraveler: 20,
+        cancelRefund: 0,
         minDays: 5,
-        perAddDay: 5,
+        perAddDay: 3,
         levelCare: 2,
-        amount: 4000,
-        rating: 67
+        amount: 8,
+        review: 2
     },
     {
         name: 'Essential',
         desc: 'Everything you need, none of the frills',
-        baseCost: 500,
+        baseCost: 200,
         perAddTraveler: 10,
-        cancelFee: 100,
+        cancelRefund: 20,
         minDays: 3,
-        perAddDay: 6,
+        perAddDay: 7,
         levelCare: 3,
-        amount: 6000,
-        rating: 85
+        amount: 10,
+        review: 4
     },
     {
         name: 'Flight of Fancy',
         desc: 'For the indecisive traveler unsure of their travel plans',
-        baseCost: 500,
+        baseCost: 250,
         perAddTraveler: 15,
-        cancelFee: 0,
+        cancelRefund: 100,
         minDays: 6,
         perAddDay: 4,
         levelCare: 2,
-        amount: 5000,
-        rating: 78
+        amount: 8,
+        review: 3
     },
     {
         name: 'Standard',
         desc: 'Not too much. Not too little. Just right',
-        baseCost: 500,
+        baseCost: 300,
         perAddTraveler: 20,
-        cancelFee: 200,
+        cancelRefund: 50,
         minDays: 4,
         perAddDay: 8,
         levelCare: 3,
-        amount: 8000,
-        rating: 90
+        amount: 8,
+        review: 5
     },
     {
         name: 'Standard Plus',
         desc: 'Just the right amount of coverage and a cherry on top',
-        baseCost: 800,
-        perAddTraveler: 15,
-        cancelFee: 200,
+        baseCost: 350,
+        perAddTraveler: 20,
+        cancelRefund: 70,
         minDays: 4,
-        perAddDay: 6,
+        perAddDay: 8,
         levelCare: 3,
-        amount: 10000,
-        rating: 82
+        amount: 10,
+        review: 4
     },
     {
         name: 'Premium',
         desc: 'Our package for the risk-averse traveler',
-        baseCost: 1000,
+        baseCost: 400,
         perAddTraveler: 10,
-        cancelFee: 300,
+        cancelRefund: 80,
         minDays: 5,
         perAddDay: 7,
         levelCare: 5,
-        amount: 15000,
-        rating: 84
+        amount: 7,
+        review: 4
     },
     {
         name: 'Premium Deluxe',
         desc: 'Complete coverage and the kitchen sink',
-        baseCost: 15000,
+        baseCost: 450,
         perAddTraveler: 10,
-        cancelFee: 400,
+        cancelRefund: 85,
         minDays: 5,
         perAddDay: 10,
         levelCare: 5,
-        amount: 50000,
-        rating: 95
+        amount: 8,
+        review: 5
     },
     {
         name: 'Getaway',
         desc: 'For travelers about to embark on the journey of their life',
-        baseCost: 1500,
+        baseCost: 400,
         perAddTraveler: 5,
-        cancelFee: 500,
+        cancelRefund: 40,
         minDays: 20,
         perAddDay: 0,
         levelCare: 4,
-        amount: 20000,
-        rating: 78
+        amount: 8,
+        review: 3
     }];
 
     for (var p in policies){
