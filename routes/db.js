@@ -105,6 +105,42 @@ var populateDB = function() {
         review: 5
     },
     {
+        name: 'Best coverage',
+        desc: 'Complete coverage for everyone',
+        baseCost: 460,
+        perAddTraveler: 10,
+        cancelRefund: 70,
+        minDays: 5,
+        perAddDay: 10,
+        levelCare: 4,
+        amount: 7,
+        review: 4
+    },
+    {
+        name: 'Good coverage',
+        desc: 'Pretty good coverage, not much else',
+        baseCost: 400,
+        perAddTraveler: 10,
+        cancelRefund: 78,
+        minDays: 5,
+        perAddDay: 8,
+        levelCare: 3,
+        amount: 8,
+        review: 4
+    },
+    {
+        name: 'Not so much coverage',
+        desc: 'Just the bare bones',
+        baseCost: 300,
+        perAddTraveler: 10,
+        cancelRefund: 40,
+        minDays: 5,
+        perAddDay: 10,
+        levelCare: 2,
+        amount: 8,
+        review: 4
+    },
+    {
         name: 'Getaway',
         desc: 'For travelers about to embark on the journey of their life',
         baseCost: 400,
@@ -123,7 +159,7 @@ var populateDB = function() {
                 //console.log('error in populating the DB policies: ' + err );
             }
         });
-    }   
+    }
 };
 exports.populateDB = populateDB;
 
