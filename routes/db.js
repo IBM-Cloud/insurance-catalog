@@ -105,6 +105,42 @@ var populateDB = function() {
         review: 5
     },
     {
+        name: 'For singles only',
+        desc: 'Travelling by yourself?',
+        baseCost: 300,
+        perAddTraveler: 200,
+        cancelRefund: 70,
+        minDays: 5,
+        perAddDay: 10,
+        levelCare: 4,
+        amount: 7,
+        review: 4
+    },
+    {
+        name: 'For couples',
+        desc: 'Just you and your SO!',
+        baseCost: 400,
+        perAddTraveler: 30,
+        cancelRefund: 70,
+        minDays: 5,
+        perAddDay: 10,
+        levelCare: 4,
+        amount: 7,
+        review: 4
+    },
+    {
+        name: 'Family lover',
+        desc: 'Everyone can come along',
+        baseCost: 700,
+        perAddTraveler: 10,
+        cancelRefund: 70,
+        minDays: 5,
+        perAddDay: 10,
+        levelCare: 4,
+        amount: 7,
+        review: 4
+    },
+    {
         name: 'Best coverage',
         desc: 'Complete coverage for everyone',
         baseCost: 460,
