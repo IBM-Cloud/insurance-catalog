@@ -105,8 +105,8 @@ var populateDB = function() {
         review: 5
     },
     {
-        name: 'For singles only',
-        desc: 'Travelling by yourself?',
+        name: 'Singles Only',
+        desc: 'Traveling by yourself?',
         baseCost: 300,
         perAddTraveler: 200,
         cancelRefund: 70,
@@ -117,7 +117,7 @@ var populateDB = function() {
         review: 4
     },
     {
-        name: 'For couples',
+        name: 'Couples Retreat',
         desc: 'Just you and your SO!',
         baseCost: 400,
         perAddTraveler: 30,
@@ -129,7 +129,7 @@ var populateDB = function() {
         review: 4
     },
     {
-        name: 'Family lover',
+        name: 'Family Lover',
         desc: 'Everyone can come along',
         baseCost: 700,
         perAddTraveler: 10,
@@ -141,7 +141,7 @@ var populateDB = function() {
         review: 4
     },
     {
-        name: 'Best coverage',
+        name: 'Best Coverage',
         desc: 'Complete coverage for everyone',
         baseCost: 460,
         perAddTraveler: 10,
@@ -153,7 +153,7 @@ var populateDB = function() {
         review: 4
     },
     {
-        name: 'Good coverage',
+        name: 'Good Coverage',
         desc: 'Pretty good coverage, not much else',
         baseCost: 400,
         perAddTraveler: 10,
@@ -165,7 +165,7 @@ var populateDB = function() {
         review: 4
     },
     {
-        name: 'Not so much coverage',
+        name: 'Not So Much Coverage',
         desc: 'Just the bare bones',
         baseCost: 300,
         perAddTraveler: 10,

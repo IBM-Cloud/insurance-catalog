@@ -39,6 +39,8 @@ app.get('/policies/:id', policies.find);
 app.post('/policies', policies.create);
 app.put('/policies/:id', policies.update);
 app.delete('/policies/:id', policies.remove);
+
+// We add this route to access evaluate() in routes/tradeoff.js
 app.post('/tradeoff', tradeoff.evaluate);
 
 app.listen(appEnv.port, appEnv.bind);

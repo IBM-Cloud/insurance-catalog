@@ -69,6 +69,24 @@ _**results**_
 
 _**Note**: Asterisks ( *\** ) mark required field_
 
+## Insurance Policies
+
+The insurance-catalog app serves as the API to the Cloud Insurance Co. repository of insurance policies. When the app is initialized it checks for the existence of a `policies` DB in the Cloudant datastore. If it does not exist, it creates the DB and populates it with the initial policy docs from the [`routes/db.js`](./routes/db.js) file. Subsequently, policies in the DB can be manipulated through the API.
+
+### Policy Fields
+**name**: Policy short name  
+**desc**: Longer description of the policy  
+**baseCost**: Cost of the policy at the minimum number of days and without additional travelers  
+**perAddTraveler\***: Percentage increase to the base policy per additional traveler  
+**cancelRefund**: The percentage of the policy cost refunded upon cancellation before the start of the trip  
+**minDays**: The minimum number of days for a trip to qualify  
+**perAddDay\***: Percentage increase to the base policy per additional day after the minimum number of days  
+**levelCare**: Tier of care provided by the policy  
+**amount**: Multiplier to determine coverage amount relative to policy cost  
+**review**: Average star rating given to the policy by previous customers  
+
+**\*** Cost compounded on each addition
+
 ## Troubleshooting
 
 The primary source of debugging information for your Bluemix app is the logs. To see them, run the following command using the Cloud Foundry CLI:
