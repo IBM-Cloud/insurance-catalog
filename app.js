@@ -15,9 +15,14 @@ var appEnvOpts = vcapLocal ? {vcap:vcapLocal} : {};
 var appEnv = cfenv.getAppEnv(appEnvOpts);
 
 // Setup services
-cloudantService = appEnv.getService("policy-db");
-tradeoffService = appEnv.getService("insurance-tradeoff-analytics").credentials;
-tradeoffService.version = 'v1';
+try {
+	cloudantService = appEnv.getService("policy-db");
+	tradeoffService = appEnv.getService("insurance-tradeoff-analytics").credentials;
+	tradeoffService.version = 'v1';
+}
+catch (e) {
+	console.error("Error looking up service: ", e);
+}
 
 // Setup route handlers
 var policies = require('./routes/policies');

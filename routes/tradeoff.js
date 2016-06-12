@@ -1,8 +1,18 @@
-var tradeoffAnalytics = require('watson-developer-cloud').tradeoff_analytics(tradeoffService),
-		db = require('./db');
+/*eslint-env node */
+try {
+  var tradeoffAnalytics = require('watson-developer-cloud').tradeoff_analytics(tradeoffService),
+		  db = require('./db');
+}
+catch (e) {
+  console.error("Error initializing services for /tradeoff: ", e);
+}
 
 //Create and populate or delete the database.
 exports.evaluate = function(req, res) {
+
+  // Bound service check
+  if (typeof tradeoffService == 'undefined' || typeof db.policiesDb == 'undefined')
+    return res.send({msg:'Error: Cannot run evaluate() without bound services'});
 
 	// Get and validate policy calculation inputs
   var tripDuration = req.body.tripDuration,
@@ -13,36 +23,32 @@ exports.evaluate = function(req, res) {
       policyCost = req.body.policyCost;
   if (tripDuration === undefined || tripCost === undefined ||
   		(addTravelers && addTravelers.length === 0))
-  	res.send({msg:'Error: Invalid criteria received for tradeoff calculation'});
-  else {
-    db.policiesDb.list({include_docs: true}, function(err, body) {
-      if (err) {
-        res.send({msg:'Error retrieving policies: ' + err});
-      }
-      else {
-        // Get policies and winnow them down to eligible options based on input criteria
-        var policies = getEligiblePolicies(body.rows, tripDuration, refund, reviews);
-        var options = policies.map(function(policy) {
-          return policyToOption(policy, tripDuration, addTravelers, tripCost);
-        });
+  	return res.send({msg:'Error: Invalid criteria received for tradeoff calculation'});
 
-        // Create the problem to be sent to TA
-        var templateFile = "./tradeoff_data/policies.template.json",
-            problem = setColumns(templateFile, refund, reviews, policyCost);
-        problem.options = options;
+  db.policiesDb.list({include_docs: true}, function(err, body) {
+    if (err)
+      return res.send({msg:'Error retrieving policies: ' + err});
 
-        // Call Tradeoff Analytics service
-        tradeoffAnalytics.dilemmas(problem, function(err, data) {
-          if (err)
-            return res.send({msg:'Error calculating tradeoff analytics: ' + err});
-          else {
-            var answer = buildAnswer(data, policies);
-            return res.json(answer);
-          }
-        });
-      }
+    // Get policies and winnow them down to eligible options based on input criteria
+    var policies = getEligiblePolicies(body.rows, tripDuration, refund, reviews);
+    var options = policies.map(function(policy) {
+      return policyToOption(policy, tripDuration, addTravelers, tripCost);
     });
-  }
+
+    // Create the problem to be sent to TA
+    var templateFile = "./tradeoff_data/policies.template.json",
+        problem = setColumns(templateFile, refund, reviews, policyCost);
+    problem.options = options;
+
+    // Call Tradeoff Analytics service
+    tradeoffAnalytics.dilemmas(problem, function(err, data) {
+      if (err)
+        return res.send({msg:'Error calculating tradeoff analytics: ' + err});
+
+      var answer = buildAnswer(data, policies);
+      return res.json(answer);
+    });
+  });
 };
 
 

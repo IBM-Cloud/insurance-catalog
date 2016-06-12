@@ -87,6 +87,8 @@ The insurance-catalog app serves as the API to the Cloud Insurance Co. repositor
 
 **\*** Cost compounded on each addition
 
+_**Note**: When updating the default policies in `routes/db.js`, make sure to delete the `policies` DB before the app is re-deployed so that the new policies are uploaded._
+
 ## Troubleshooting
 
 The primary source of debugging information for your Bluemix app is the logs. To see them, run the following command using the Cloud Foundry CLI:

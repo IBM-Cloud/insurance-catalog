@@ -1,8 +1,13 @@
 /*eslint-env node */
-var cloudant = require('cloudant')(cloudantService.credentials.url);
-exports.cloudant = cloudant;
-var policiesDb = cloudant.use('policies');
-exports.policiesDb = policiesDb;
+try {
+    var cloudant = require('cloudant')(cloudantService.credentials.url);
+    exports.cloudant = cloudant;
+    var policiesDb = cloudant.use('policies');
+    exports.policiesDb = policiesDb;
+}
+catch (e) {
+    console.error("Error initializing services for /db: ", e);
+}
 
 //populate the db with these policies.
 var populateDB = function() {
@@ -201,6 +206,11 @@ exports.populateDB = populateDB;
 
 //Initiate the database.
 var initDB = function() {
+
+    // Bound service check
+    if (typeof cloudant == 'undefined')
+        return res.send({msg:'Error: Cannot run initDB() w/o Cloudant service'});
+
     cloudant.db.create('policies', function(err/*, body*/) {
 	    if (!err) {
 	        populateDB();

@@ -1,8 +1,14 @@
 /*eslint-env node */
 var http = require('http');
-var db = require('./db');
-db.initDB();
 var USE_FASTCACHE = false;
+
+try {
+    var db = require('./db');
+    db.initDB();
+}
+catch (e) {
+  console.error("Error initializing services for /policies: ", e);
+}
 
 /*
  * To enable the load generator and 'improved' cache mechanism below:
@@ -46,6 +52,11 @@ exports.loadTest = function(req, res) {
 
 //Create and populate or delete the database.
 exports.dbOptions = function(req, res) {
+
+    // Bound service check
+    if (typeof db.cloudant == 'undefined')
+        return res.send({msg:'Error: Cannot run dbOptions() without bound services'});
+
     var option = req.params.option.toLowerCase();
     if (option === 'create') {
         db.cloudant.db.create('policies', function(err/*, body*/) {
@@ -71,6 +82,11 @@ exports.dbOptions = function(req, res) {
 
 //Create a policy to add to the database.
 exports.create = function(req, res) {
+
+    // Bound service check
+    if (typeof db.policiesDb == 'undefined')
+        return res.send({msg:'Error: Cannot run create() w/o policies DB'});
+
     db.policiesDb.insert(req.body, function(err/*, body, headers*/) {
         if (!err) {
             res.send({msg: 'Successfully created policy'});
@@ -82,6 +98,11 @@ exports.create = function(req, res) {
 
 //find a policy by ID.
 exports.find = function(req, res) {
+
+    // Bound service check
+    if (typeof db.policiesDb == 'undefined')
+        return res.send({msg:'Error: Cannot run find() w/o policies DB'});
+
     var id = req.params.id;
     if (USE_FASTCACHE) {
     	var idAsNumber = parseInt(id.substring(id.length - 2), 16);
@@ -103,6 +124,11 @@ exports.find = function(req, res) {
 
 //list all the database contents.
 exports.list = function(req, res) {
+
+    // Bound service check
+    if (typeof db.policiesDb == 'undefined')
+        return res.send({msg:'Error: Cannot run list() w/o policies DB'});
+
     db.policiesDb.list({include_docs: true}, function(err, body/*, headers*/) {
 	    if (!err) {
 	        res.send(body);
@@ -114,6 +140,11 @@ exports.list = function(req, res) {
 
 //update a policy using an ID.
 exports.update = function(req, res) {
+
+    // Bound service check
+    if (typeof db.policiesDb == 'undefined')
+        return res.send({msg:'Error: Cannot run update() w/o policies DB'});
+
     var id = req.params.id;
     var data = req.body;
     db.policiesDb.get(id, {revs_info:true}, function(err, body) {
@@ -135,6 +166,11 @@ exports.update = function(req, res) {
 
 //remove an policy from the database using an ID.
 exports.remove =  function(req, res) {
+
+    // Bound service check
+    if (typeof db.policiesDb == 'undefined')
+        return res.send({msg:'Error: Cannot run remove() w/o policies DB'});
+
     var id = req.params.id;
     db.policiesDb.get(id, { revs_info: true }, function(err, body) {
         if (!err) {
