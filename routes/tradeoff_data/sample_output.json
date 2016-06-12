@@ -17,6 +17,10 @@
       "type": "numeric",
       "key": "levelCare",
       "full_name": "Level of Care",
+      "range": {
+        "low": 1,
+        "high": 5
+      },
       "format": "number:0",
       "description": "Level of care offered by the policy",
       "goal": "max",

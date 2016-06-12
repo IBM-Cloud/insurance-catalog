@@ -22,6 +22,10 @@
       "goal": "max",
       "is_objective": true,
       "full_name": "Level of Care",
+      "range": {
+        "low": 1,
+        "high": 5
+      },
       "format": "number:0"
     },
     {
