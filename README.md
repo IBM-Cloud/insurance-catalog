@@ -55,19 +55,19 @@ And voila! You now have your very own instance of the Insurance Catalog API runn
 **`POST /tradeoff`:** Takes input criteria for a prospective trip and returns eligible policies and their Tradeoff Analytics results.
 
 _**params**_  
-**tripDuration\*** _(int)_ - The length of the trip in days  
-**tripCost\*** _(int)_ - The estimated cost of the trip  
+**tripDuration&ast;** _(int)_ - The length of the trip in days  
+**tripCost&ast;** _(int)_ - The estimated cost of the trip  
 **addTravelers** _(int[ ])_ - Age of each additional traveler, not including policy owner  
 **refund** _(int)_ - The percentage of policy eligible for a refund upon cancellation  
 **reviews** _(int)_ - The average star rating that the policy has received from previous customers  
 **policyCost** _(int)_ - The maximum amount that the user desires to spend on the policy  
 
 _**results**_  
-[**columns**][column_spec_url]**\*** _(object[ ])_ - Conditions used to evaluate the tradeoff between eligible policies  
-**policies\*** _(policy[ ])_ - Policies deemed as the best options, ordered alphabetically by name  
+[**columns**][column_spec_url]**&ast;** _(object[ ])_ - Conditions used to evaluate the tradeoff between eligible policies  
+**policies&ast;** _(policy[ ])_ - Policies deemed as the best options, ordered alphabetically by name  
 [**map**][map_spec_url] _(object)_ - The two-dimensional positioning of each option on the map polygon displayed by the Tradeoff Analytics visualization.
 
-_**Note**: Asterisks ( *\** ) mark required field_
+_**Note**: Asterisks ( **&ast;** ) mark required field_
 
 ## Insurance Policies
 
@@ -77,15 +77,15 @@ The insurance-catalog app serves as the API to the Cloud Insurance Co. repositor
 **name**: Policy short name  
 **desc**: Longer description of the policy  
 **baseCost**: Cost of the policy at the minimum number of days and without additional travelers  
-**perAddTraveler\***: Percentage increase to the base policy per additional traveler  
+**perAddTraveler&ast;**: Percentage increase to the base policy per additional traveler  
 **cancelRefund**: The percentage of the policy cost refunded upon cancellation before the start of the trip  
 **minDays**: The minimum number of days for a trip to qualify  
-**perAddDay\***: Percentage increase to the base policy per additional day after the minimum number of days  
+**perAddDay&ast;**: Percentage increase to the base policy per additional day after the minimum number of days  
 **levelCare**: Tier of care provided by the policy  
 **amount**: Multiplier to determine coverage amount relative to policy cost  
 **review**: Average star rating given to the policy by previous customers  
 
-**\*** Cost compounded on each addition
+**&ast;** Cost compounded on each addition
 
 _**Note**: When updating the default policies in `routes/db.js`, make sure to delete the `policies` DB before the app is re-deployed so that the new policies are uploaded._
 
