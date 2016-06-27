@@ -1,14 +1,23 @@
 {
   "name": "insurance-catalog",
-  "version": "0.0.1",
-  "description": "A Node.js app for interacting with insurance policies.",
+  "version": "1.0.0",
+  "description": "A Node.js app for interacting with insurance policies in a Cloudant DB.",
+  "private": false,
+  "keywords": [
+    "bluemix",
+    "microservices",
+    "watson",
+    "tradeoff-analytics",
+    "cloudant",
+    "nosql"
+  ],
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "1.12.x",
     "cfenv": "1.0.x",
-    "cloudant": "*",
+    "cloudant": "1.4.x",
     "consolidate": "0.11.x",
     "cors": "2.5.x",
     "express": "3.20.x",
@@ -41,9 +50,18 @@
     "type": "git",
     "url": "https://github.com/IBM-Bluemix/insurance-catalog.git"
   },
+  "bugs": {
+    "url": "https://github.com/IBM-Bluemix/insurance-catalog/issues"
+  },
   "engines": {
     "node": "4.4.x"
   },
   "author": "IBM Corp.",
+  "contributors": [
+    {
+      "name": "Jake Peyser",
+      "email": "jepeyser@us.ibm.com"
+    }
+  ],
   "license": "Apache-2.0"
 }
