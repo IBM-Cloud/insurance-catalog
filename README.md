@@ -105,7 +105,7 @@ _**Note**: Asterisks ( **&ast;** ) mark required field_
 
 ## Insurance Policies
 
-The insurance-catalog app serves as the API to the Cloud Insurance Co. repository of insurance policies. When the app is initialized it checks for the existence of a `policies` DB in the Cloudant datastore. If it does not exist, it creates the DB and populates it with the initial policy docs from the [`routes/db.js`](./routes/db.js) file. Subsequently, policies in the DB can be manipulated through the API.
+The insurance-catalog app serves as the API to the Cloud Insurance Co. repository of insurance policies. When the app is initialized it checks for the existence of a `policies` DB in the Cloudant datastore. If it does not exist, it creates the DB and populates it with the initial policy docs from the [`routes/starter_docs/policies.json`](./routes/starter_docs/policies.json) file. Subsequently, policies in the DB can be manipulated through the API.
 
 ### Policy Fields
 **name**: Policy short name  
