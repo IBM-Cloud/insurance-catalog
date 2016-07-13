@@ -4,9 +4,7 @@
 
 A Node.js app that serves as an API into the policy database for the [insurance-store-front][store_front_url]. To store the insurance policies, we use a [Cloudant NoSQL DB][cloudant_url] and then utilize [Watson Tradeoff Analytics][ta_url] to evaluate comparisons between the them.
 
-In order to deploy the full set of microservices involved in the insurance-store demo, check out the [insurance-toolchain repo][toolchain_url]. Otherwise, you can deploy just this app with the following button
-
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)
+In order to deploy the full set of microservices involved in the insurance-store demo, check out the [insurance-toolchain repo][toolchain_url]. Otherwise, you can deploy just the app by following the steps here.
 
 ## Running the app on Bluemix
 
@@ -44,10 +42,22 @@ In order to deploy the full set of microservices involved in the insurance-store
   $ cf create-service tradeoff_analytics standard insurance-tradeoff-analytics
   ```
 
-9. Push the app to Bluemix.
+9. Push the app to Bluemix
 
   ```
-  $ cf push
+  $ cf push --no-start
+  ```
+
+10. Bind the Cloudant service to your app
+
+  ```
+  $ cf bind-service insurance-catalog policy-db
+  ```
+
+11. Start your app
+
+  ```
+  $ cf start insurance-catalog
   ```
 
 And voila! You now have your very own instance of the Insurance Catalog API running on Bluemix.

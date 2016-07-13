@@ -1,8 +1,5 @@
 ---
 declared-services:
-  policy-db:
-    label: cloudantNoSQLDB
-    plan: Shared
   insurance-tradeoff-analytics:
     label: tradeoff_analytics
     plan: standard
@@ -13,5 +10,4 @@ applications:
   instances: 1
   path: .
   services:
-  - policy-db
   - insurance-tradeoff-analytics
