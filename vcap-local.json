@@ -2,7 +2,7 @@
   "services": {
     "cloudantNoSQLDB": [
       {
-        "name": "policy-db",
+        "name": "insurance-policy-db",
         "label": "cloudantNoSQLDB",
         "plan": "Shared",
         "credentials": {
@@ -15,7 +15,7 @@
       }
     ],
     "tradeoff_analytics": [
-      {   
+      {
         "name": "insurance-tradeoff-analytics",
         "label": "tradeoff_analytics",
         "plan": "standard",

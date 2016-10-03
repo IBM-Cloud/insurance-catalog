@@ -185,7 +185,7 @@ exports.remove =  function(req, res) {
         } else {
             res.send({msg:'Error getting policy id: ' + err});
         }
-    });  
+    });
 };
 
 //calculate the fibonacci of 20.
