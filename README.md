@@ -76,7 +76,7 @@ And voila! You now have your very own instance of the Insurance Catalog API runn
 
 4. `cd` into this newly created directory
 
-5. Create a [Cloudant service][cloudant_service_url] named `policy-db` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file
+5. Create a [Cloudant service][cloudant_service_url] named `policy-db` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file - using `vcap-local.template.json` as template file.
 
 6. Create a [Tradeoff Analytics service][tradeoff_analytics_service_url] named `insurance-tradeoff-analytics` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file
 

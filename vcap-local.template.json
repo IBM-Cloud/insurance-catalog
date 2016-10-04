@@ -6,11 +6,11 @@
         "label": "cloudantNoSQLDB",
         "plan": "Shared",
         "credentials": {
-          "username": "USERNAME",
-          "password": "PASSWORD",
-          "host": "HOSTNAME",
+          "username": "",
+          "password": "",
+          "host": "",
           "port": 443,
-          "url": "URL"
+          "url": ""
         }
       }
     ],
@@ -21,8 +21,8 @@
         "plan": "standard",
         "credentials": {
           "url": "https://gateway.watsonplatform.net/tradeoff-analytics/api",
-          "password": "PASSWORD",
-          "username": "USERNAME"
+          "password": "",
+          "username": ""
         }
       }
     ]
