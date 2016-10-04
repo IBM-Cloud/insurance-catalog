@@ -24,8 +24,7 @@ else {
     appName = JSON.parse(process.env.VCAP_APPLICATION).name;
 }
 try {
-	var policyDb = appName.substr(0, appName.indexOf("insurance")) + "policy-db";
-	cloudantService = appEnv.getService(policyDb);
+	cloudantService = appEnv.services.cloudantNoSQLDB[0];
 	tradeoffService = appEnv.getService("insurance-tradeoff-analytics").credentials;
 	tradeoffService.version = 'v1';
 }
@@ -57,5 +56,8 @@ app.delete('/policies/:id', policies.remove);
 // We add this route to access evaluate() in routes/tradeoff.js
 app.post('/tradeoff', tradeoff.evaluate);
 
-app.listen(appEnv.port, appEnv.bind);
-console.log('App started on ' + appEnv.bind + ':' + appEnv.port);
+// start server on the specified port and binding host
+app.listen(appEnv.port, "0.0.0.0", function () {
+  // print a message when the server starts listening
+  console.log("catalog server starting on " + appEnv.url);
+});
