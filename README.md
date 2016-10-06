@@ -33,7 +33,7 @@ In order to deploy the full set of microservices involved in the insurance-store
 6. Connect to Bluemix in the command line tool and follow the prompts to log in
 
   ```
-  $ cf login -a https://api.ng.bluemix.net
+  cf login -a https://api.ng.bluemix.net
   ```
 
 7. Create the [Cloudant service][cloudant_service_url] in Bluemix
