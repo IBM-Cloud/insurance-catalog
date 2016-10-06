@@ -1,11 +1,4 @@
 ---
-declared-services:
-  insurance-tradeoff-analytics:
-    label: tradeoff_analytics
-    plan: standard
-  insurance-policy-db:
-    label: cloudantNoSQLDB
-    plan: Lite
 applications:
 - name: insurance-catalog
   host: insurance-catalog
