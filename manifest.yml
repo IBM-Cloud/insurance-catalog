@@ -3,11 +3,13 @@ declared-services:
   insurance-tradeoff-analytics:
     label: tradeoff_analytics
     plan: standard
+  insurance-policy-db:
+    label: cloudantNoSQLDB
+    plan: Lite
 applications:
 - name: insurance-catalog
+  host: insurance-catalog
   memory: 128M
-  buildpack: sdk-for-nodejs
-  instances: 1
-  path: .
   services:
   - insurance-tradeoff-analytics
+  - insurance-policy-db

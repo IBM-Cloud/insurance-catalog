@@ -39,31 +39,19 @@ In order to deploy the full set of microservices involved in the insurance-store
 7. Create the [Cloudant service][cloudant_service_url] in Bluemix
 
   ```
-  $ cf create-service cloudantNoSQLDB Shared policy-db
+  cf create-service cloudantNoSQLDB Lite insurance-policy-db
   ```
 
 8. Create the [Tradeoff Analytics service][tradeoff_analytics_service_url] in Bluemix
 
   ```
-  $ cf create-service tradeoff_analytics standard insurance-tradeoff-analytics
+  cf create-service tradeoff_analytics standard insurance-tradeoff-analytics
   ```
 
 9. Push the app to Bluemix
 
   ```
-  $ cf push --no-start
-  ```
-
-10. Bind the Cloudant service to your app
-
-  ```
-  $ cf bind-service insurance-catalog policy-db
-  ```
-
-11. Start your app
-
-  ```
-  $ cf start insurance-catalog
+  cf push
   ```
 
 And voila! You now have your very own instance of the Insurance Catalog API running on Bluemix.
@@ -82,7 +70,7 @@ And voila! You now have your very own instance of the Insurance Catalog API runn
 
 4. `cd` into this newly created directory
 
-5. Create a [Cloudant service][cloudant_service_url] named `policy-db` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file - using `vcap-local.template.json` as template file.
+5. Create a [Cloudant service][cloudant_service_url] named `insurance-policy-db` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file - using `vcap-local.template.json` as template file.
 
 6. Create a [Tradeoff Analytics service][tradeoff_analytics_service_url] named `insurance-tradeoff-analytics` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file
 
