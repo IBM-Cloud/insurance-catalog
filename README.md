@@ -1,14 +1,14 @@
-# CloudCo Insurance - Catalog
+# Cloud Insurance Co. - Catalog
 
 | **master** | [![Build Status](https://travis-ci.org/IBM-Bluemix/insurance-catalog.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/insurance-catalog) |
 | ----- | ----- |
 | **dev** | [![Build Status](https://travis-ci.org/IBM-Bluemix/insurance-catalog.svg?branch=dev)](https://travis-ci.org/IBM-Bluemix/insurance-catalog) |
 
-This service is part of the larger [CloudCo Insurance](https://github.com/IBM-Bluemix/cloudco-insurance) project.
+This service is part of the larger [Cloud Insurance Co.](https://github.com/IBM-Bluemix/cloudco-insurance) project.
 
 # Overview
 
-A Node.js app that serves as an API into the policy database for the [CloudCo Insurance](https://github.com/IBM-Bluemix/cloudco-insurance). To store the insurance policies, we use a [Cloudant NoSQL DB][cloudant_url] and then utilize [Watson Tradeoff Analytics][ta_url] to evaluate comparisons between the them.
+A Node.js app that serves as an API into the policy database for the [Cloud Insurance Co.](https://github.com/IBM-Bluemix/cloudco-insurance). To store the insurance policies, we use a [Cloudant NoSQL DB][cloudant_url] and then utilize [Watson Tradeoff Analytics][ta_url] to evaluate comparisons between the them.
 
 In order to deploy the full set of microservices involved in the insurance-store demo, check out the [insurance-toolchain repo][toolchain_url]. Otherwise, you can deploy just the app by following the steps here.
 
