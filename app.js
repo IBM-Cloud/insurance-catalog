@@ -14,15 +14,6 @@ catch (e) {}
 var appEnvOpts = vcapLocal ? {vcap:vcapLocal} : {};
 var appEnv = cfenv.getAppEnv(appEnvOpts);
 
-// Setup services
-var appName;
-if (appEnv.isLocal) {
-    require('dotenv').load();
-    appName = process.env.CF_APP_NAME;
-}
-else {
-    appName = JSON.parse(process.env.VCAP_APPLICATION).name;
-}
 try {
 	cloudantService = appEnv.services.cloudantNoSQLDB[0];
 	tradeoffService = appEnv.getService("insurance-tradeoff-analytics").credentials;
