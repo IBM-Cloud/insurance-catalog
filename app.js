@@ -4,6 +4,9 @@ var cfenv = require("cfenv");
 var path = require('path');
 var cors = require('cors');
 
+//---Deployment Tracker---------------------------------------------------------
+require("cf-deployment-tracker-client").track();
+
 // Setup the required environment variables
 var vcapLocal = null;
 try {
@@ -14,15 +17,6 @@ catch (e) {}
 var appEnvOpts = vcapLocal ? {vcap:vcapLocal} : {};
 var appEnv = cfenv.getAppEnv(appEnvOpts);
 
-// Setup services
-var appName;
-if (appEnv.isLocal) {
-    require('dotenv').load();
-    appName = process.env.CF_APP_NAME;
-}
-else {
-    appName = JSON.parse(process.env.VCAP_APPLICATION).name;
-}
 try {
 	cloudantService = appEnv.services.cloudantNoSQLDB[0];
 	tradeoffService = appEnv.getService("insurance-tradeoff-analytics").credentials;

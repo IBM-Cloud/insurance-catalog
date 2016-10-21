@@ -1,0 +1,8 @@
+---
+applications:
+- name: dev-insurance-catalog
+  host: dev-insurance-catalog
+  memory: 128M
+  services:
+  - insurance-tradeoff-analytics
+  - dev-insurance-policy-db

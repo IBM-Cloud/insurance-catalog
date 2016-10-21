@@ -1,10 +1,16 @@
-# insurance-catalog
+# Cloud Insurance Co. - Catalog
 
-[![Build Status](https://travis-ci.org/IBM-Bluemix/insurance-catalog.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/insurance-catalog)
+| **master** | [![Build Status](https://travis-ci.org/IBM-Bluemix/insurance-catalog.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/insurance-catalog) |
+| ----- | ----- |
+| **dev** | [![Build Status](https://travis-ci.org/IBM-Bluemix/insurance-catalog.svg?branch=dev)](https://travis-ci.org/IBM-Bluemix/insurance-catalog) |
 
-A Node.js app that serves as an API into the policy database for the [insurance-store-front][store_front_url]. To store the insurance policies, we use a [Cloudant NoSQL DB][cloudant_url] and then utilize [Watson Tradeoff Analytics][ta_url] to evaluate comparisons between the them.
+This service is part of the larger [Cloud Insurance Co.](https://github.com/IBM-Bluemix/cloudco-insurance) project.
 
-In order to deploy the full set of microservices involved in the insurance-store demo, check out the [insurance-toolchain repo][toolchain_url]. Otherwise, you can deploy just the app by following the steps here.
+# Overview
+
+A Node.js app that serves as an API into the policy database for the [Cloud Insurance Co.](https://github.com/IBM-Bluemix/cloudco-insurance). To store the insurance policies, we use a [Cloudant NoSQL DB][cloudant_url] and then utilize [Watson Tradeoff Analytics][ta_url] to evaluate comparisons between the them.
+
+In order to deploy the full set of microservices involved, check out the [insurance-toolchain repo][toolchain_url]. Otherwise, you can deploy just the app by following the steps here.
 
 ## Running the app on Bluemix
 
@@ -27,37 +33,25 @@ In order to deploy the full set of microservices involved in the insurance-store
 6. Connect to Bluemix in the command line tool and follow the prompts to log in
 
   ```
-  $ cf login -a https://api.ng.bluemix.net
+  cf login -a https://api.ng.bluemix.net
   ```
 
 7. Create the [Cloudant service][cloudant_service_url] in Bluemix
 
   ```
-  $ cf create-service cloudantNoSQLDB Shared policy-db
+  cf create-service cloudantNoSQLDB Lite insurance-policy-db
   ```
 
 8. Create the [Tradeoff Analytics service][tradeoff_analytics_service_url] in Bluemix
 
   ```
-  $ cf create-service tradeoff_analytics standard insurance-tradeoff-analytics
+  cf create-service tradeoff_analytics standard insurance-tradeoff-analytics
   ```
 
 9. Push the app to Bluemix
 
   ```
-  $ cf push --no-start
-  ```
-
-10. Bind the Cloudant service to your app
-
-  ```
-  $ cf bind-service insurance-catalog policy-db
-  ```
-
-11. Start your app
-
-  ```
-  $ cf start insurance-catalog
+  cf push
   ```
 
 And voila! You now have your very own instance of the Insurance Catalog API running on Bluemix.
@@ -76,7 +70,7 @@ And voila! You now have your very own instance of the Insurance Catalog API runn
 
 4. `cd` into this newly created directory
 
-5. Create a [Cloudant service][cloudant_service_url] named `policy-db` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file - using `vcap-local.template.json` as template file.
+5. Create a [Cloudant service][cloudant_service_url] named `insurance-policy-db` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file - using `vcap-local.template.json` as template file.
 
 6. Create a [Tradeoff Analytics service][tradeoff_analytics_service_url] named `insurance-tradeoff-analytics` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file
 
@@ -149,8 +143,26 @@ For more detailed information on troubleshooting your application, see the [Trou
 
 See [License.txt](License.txt) for license information.
 
+# Privacy Notice
+
+This application is configured to track deployments to [IBM Bluemix](http://www.ibm.com/cloud-computing/bluemix/) and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker](https://github.com/IBM-Bluemix/cf-deployment-tracker-service) service on each deployment:
+
+* Node.js package version
+* Node.js repository URL
+* Application Name (`application_name`)
+* Space ID (`space_id`)
+* Application Version (`application_version`)
+* Application URIs (`application_uris`)
+* Labels of bound services
+* Number of instances for each bound service and associated plan information
+
+This data is collected from the `package.json` file in the application and the `VCAP_APPLICATION` and `VCAP_SERVICES` environment variables in IBM Bluemix and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Bluemix to measure the usefulness of our examples, so that we can continuously improve the content we offer to you. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
+
+## Disabling Deployment Tracking
+
+Deployment tracking can be disabled by removing `require("cf-deployment-tracker-client").track();` from the beginning of the `app.js` file.
+
 <!--Links-->
-[store_front_url]: https://github.com/IBM-Bluemix/insurance-store-front
 [toolchain_url]: https://github.com/IBM-Bluemix/insurance-toolchain
 [bluemix_reg_url]: http://ibm.biz/insurance-store-registration
 [cloud_foundry_url]: https://github.com/cloudfoundry/cli
