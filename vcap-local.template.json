@@ -4,7 +4,7 @@
       {
         "name": "insurance-policy-db",
         "label": "cloudantNoSQLDB",
-        "plan": "Shared",
+        "plan": "Lite",
         "credentials": {
           "username": "",
           "password": "",
