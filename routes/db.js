@@ -1,6 +1,11 @@
 /*eslint-env node */
 try {
-    var cloudant = require('cloudant')(cloudantService.credentials.url);
+    var cloudant = require('cloudant')({
+      url: cloudantService.credentials.url,
+      plugin: 'retry',
+      retryAttempts: 10,
+      retryTimeout: 500
+    });
     exports.cloudant = cloudant;
     var policiesDb = cloudant.use('policies');
     exports.policiesDb = policiesDb;
