@@ -19,8 +19,6 @@ var appEnv = cfenv.getAppEnv(appEnvOpts);
 
 try {
 	cloudantService = appEnv.services.cloudantNoSQLDB[0];
-	tradeoffService = appEnv.getService("insurance-tradeoff-analytics").credentials;
-	tradeoffService.version = 'v1';
 }
 catch (e) {
 	console.error("Error looking up service: ", e);
@@ -28,7 +26,6 @@ catch (e) {
 
 // Setup route handlers
 var policies = require('./routes/policies');
-var tradeoff = require('./routes/tradeoff');
 
 // Setup express middleware.
 var app = express();
@@ -46,9 +43,6 @@ app.get('/policies/:id', policies.find);
 app.post('/policies', policies.create);
 app.put('/policies/:id', policies.update);
 app.delete('/policies/:id', policies.remove);
-
-// We add this route to access evaluate() in routes/tradeoff.js
-app.post('/tradeoff', tradeoff.evaluate);
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, "0.0.0.0", function () {

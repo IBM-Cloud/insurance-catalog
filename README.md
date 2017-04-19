@@ -8,7 +8,7 @@ This service is part of the larger [Cloud Insurance Co.](https://github.com/IBM-
 
 # Overview
 
-A Node.js app that serves as an API into the policy database for the [Cloud Insurance Co.](https://github.com/IBM-Bluemix/cloudco-insurance). To store the insurance policies, we use a [Cloudant NoSQL DB][cloudant_url] and then utilize [Watson Tradeoff Analytics][ta_url] to evaluate comparisons between the them.
+A Node.js app that serves as an API into the policy database for the [Cloud Insurance Co.](https://github.com/IBM-Bluemix/cloudco-insurance). To store the insurance policies, we use a [Cloudant NoSQL DB][cloudant_url].
 
 In order to deploy the full set of microservices involved, check out the [insurance-toolchain repo][toolchain_url]. Otherwise, you can deploy just the app by following the steps here.
 
@@ -42,13 +42,7 @@ In order to deploy the full set of microservices involved, check out the [insura
   cf create-service cloudantNoSQLDB Lite insurance-policy-db
   ```
 
-8. Create the [Tradeoff Analytics service][tradeoff_analytics_service_url] in Bluemix
-
-  ```
-  cf create-service tradeoff_analytics standard insurance-tradeoff-analytics
-  ```
-
-9. Push the app to Bluemix
+8. Push the app to Bluemix
 
   ```
   cf push
@@ -72,40 +66,19 @@ And voila! You now have your very own instance of the Insurance Catalog API runn
 
 5. Create a [Cloudant service][cloudant_service_url] named `insurance-policy-db` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file - using `vcap-local.template.json` as template file.
 
-6. Create a [Tradeoff Analytics service][tradeoff_analytics_service_url] named `insurance-tradeoff-analytics` using your Bluemix account and replace the corresponding credentials in your `vcap-local.json` file
-
-7. Install the required npm packages using the following command
+6. Install the required npm packages using the following command
 
   ```
   npm install
   ```
 
-8. Start your app locally with the following command
+7. Start your app locally with the following command
 
   ```
   npm start
   ```
 
 This command will start your Node.js web server and print the address where it is listening to requests in the console: `server starting on http://localhost:6034`.
-
-## API documentation
-
-**`POST /tradeoff`:** Takes input criteria for a prospective trip and returns eligible policies and their Tradeoff Analytics results.
-
-_**params**_  
-**tripDuration&ast;** _(int)_ - The length of the trip in days  
-**tripCost&ast;** _(int)_ - The estimated cost of the trip  
-**addTravelers** _(int[ ])_ - Age of each additional traveler, not including policy owner  
-**refund** _(int)_ - The percentage of policy eligible for a refund upon cancellation  
-**reviews** _(int)_ - The average star rating that the policy has received from previous customers  
-**policyCost** _(int)_ - The maximum amount that the user desires to spend on the policy  
-
-_**results**_  
-[**columns**][column_spec_url]**&ast;** _(object[ ])_ - Conditions used to evaluate the tradeoff between eligible policies  
-**policies&ast;** _(policy[ ])_ - Policies deemed as the best options, ordered alphabetically by name  
-[**map**][map_spec_url] _(object)_ - The two-dimensional positioning of each option on the map polygon displayed by the Tradeoff Analytics visualization.
-
-_**Note**: Asterisks ( **&ast;** ) mark required field_
 
 ## Insurance Policies
 
@@ -167,12 +140,7 @@ Deployment tracking can be disabled by removing `require("cf-deployment-tracker-
 [bluemix_reg_url]: http://ibm.biz/insurance-store-registration
 [cloud_foundry_url]: https://github.com/cloudfoundry/cli
 [cloudant_url]: https://cloudant.com/
-[ta_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tradeoff-analytics.html
 [cloudant_service_url]: https://new-console.ng.bluemix.net/catalog/services/cloudant-nosql-db/
-[tradeoff_analytics_service_url]: https://new-console.ng.bluemix.net/catalog/services/tradeoff-analytics/
-[column_spec_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tradeoff-analytics/api/v1/?node#Column
-[solution_spec_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tradeoff-analytics/api/v1/?node#Solution
-[map_spec_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tradeoff-analytics/api/v1/?node#Map
 [download_node_url]: https://nodejs.org/download/
 [issues_url]: https://github.com/ibm-bluemix/insurance-catalog/issues
 [travis_url]: https://travis-ci.org/
