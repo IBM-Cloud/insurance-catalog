@@ -13,18 +13,6 @@
           "url": ""
         }
       }
-    ],
-    "tradeoff_analytics": [
-      {
-        "name": "insurance-tradeoff-analytics",
-        "label": "tradeoff_analytics",
-        "plan": "standard",
-        "credentials": {
-          "url": "https://gateway.watsonplatform.net/tradeoff-analytics/api",
-          "password": "",
-          "username": ""
-        }
-      }
     ]
   }
 }

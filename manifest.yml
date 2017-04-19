@@ -4,5 +4,4 @@ applications:
   host: insurance-catalog
   memory: 128M
   services:
-  - insurance-tradeoff-analytics
   - insurance-policy-db

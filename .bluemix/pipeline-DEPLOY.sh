@@ -12,7 +12,6 @@ echo "Using prefix: $PREFIX"
 
 # Create CF services
 cf create-service cloudantNoSQLDB Lite ${PREFIX}insurance-policy-db
-cf create-service tradeoff_analytics standard insurance-tradeoff-analytics
 
 if ! cf app $CF_APP; then
   cf push $CF_APP -n $CF_APP -f $MANIFEST
