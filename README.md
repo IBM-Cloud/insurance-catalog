@@ -14,9 +14,9 @@ In order to deploy the full set of microservices involved, check out the [insura
 
 ## Running the app on IBM Cloud
 
-1. If you do not already have a IBM Cloud account, [sign up here][bluemix_reg_url]
+1. If you do not already have a IBM Cloud account, [sign up here][bluemix_reg_url].
 
-2. Download and install the [Cloud Foundry CLI][cloud_foundry_url] tool
+2. Download and install the [IBM Cloud CLI][ibmcloud_cli_url] tool.
 
 3. Clone the app to your local environment from your terminal using the following command:
 
@@ -24,31 +24,31 @@ In order to deploy the full set of microservices involved, check out the [insura
   git clone https://github.com/IBM-Cloud/insurance-catalog.git
   ```
 
-4. `cd` into this newly created directory
+4. `cd` into this newly created directory.
 
 5. Open the `manifest.yml` file and change the `host` value to something unique.
 
   The host you choose will determinate the subdomain of your application's URL:  `<host>.mybluemix.net`
 
-6. Connect to IBM Cloud in the command line tool and follow the prompts to log in
+6. Connect to IBM Cloud in the command line tool and follow the prompts to log in:
 
   ```
-  cf login -a https://api.ng.bluemix.net
+  ibmcloud cf login -a https://api.ng.bluemix.net
   ```
 
-7. Create the [Cloudant service][cloudant_service_url] in IBM Cloud
+7. Create the [Cloudant service][cloudant_service_url] in IBM Cloud:
 
   ```
-  cf create-service cloudantNoSQLDB Lite insurance-policy-db
+  ibmcloud cf create-service cloudantNoSQLDB Lite insurance-policy-db
   ```
 
-8. Push the app to IBM Cloud
+8. Push the app to IBM Cloud:
 
   ```
-  cf push
+  ibmcloud cf push
   ```
 
-And voila! You now have your very own instance of the Insurance Catalog API running on IBM Cloud.
+Done, that's all! You now have your very own instance of the Insurance Catalog API running on IBM Cloud.
 
 ## Run the app locally
 
@@ -105,10 +105,10 @@ If you find a bug, please report it via the [Issues section][issues_url] or even
 
 ## Troubleshooting
 
-The primary source of debugging information for your IBM Cloud app is the logs. To see them, run the following command using the Cloud Foundry CLI:
+The primary source of debugging information for your IBM Cloud app is the logs. To see them, run the following command using the IBM Cloud CLI tool:
 
   ```
-  $ cf logs insurance-catalog --recent
+  $ ibmcloud cf logs insurance-catalog --recent
   ```
 ## License
 
@@ -117,7 +117,7 @@ See [License.txt](License.txt) for license information.
 <!--Links-->
 [toolchain_url]: https://github.com/IBM-Bluemix/insurance-toolchain
 [bluemix_reg_url]: http://ibm.biz/insurance-store-registration
-[cloud_foundry_url]: https://github.com/cloudfoundry/cli
+[ibmcloud_cli_url]: https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started
 [cloudant_url]: https://console.bluemix.net/docs/services/Cloudant/
 [cloudant_service_url]: https://console.bluemix.net/catalog/services/cloudant-nosql-db/
 [download_node_url]: https://nodejs.org/download/
