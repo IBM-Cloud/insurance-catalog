@@ -1,3 +1,6 @@
+# 2018-06-21: Inactive development, repository archived
+The orders and catalog microservices are not used by the [Cloud Insurance Co.](https://github.com/IBM-Cloud/cloudco-insurance) project. Thus, this repository is no longer maintained and is archived.
+
 # Cloud Insurance Co. - Catalog
 
 | **master** | [![Build Status](https://travis-ci.org/IBM-Cloud/insurance-catalog.svg?branch=master)](https://travis-ci.org/IBM-Cloud/insurance-catalog) |
